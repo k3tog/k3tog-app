@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "k3tog-app",
+    "slug": "k3tog-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/k3tog_logo_square@4x-icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/k3tog_logo_square@4x-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/k3tog_logo_square@4x-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/k3tog_logo_square@4x-icon.png"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
