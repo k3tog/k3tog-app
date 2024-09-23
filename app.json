@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/images/k3tog_logo_square@4x-splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#f8f4fb"
     },
     "ios": {
       "supportsTablet": true
@@ -18,7 +18,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/k3tog_logo_square@4x-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#f8f4fb"
       }
     },
     "web": {
