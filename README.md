@@ -10,13 +10,14 @@
 </p>
 
 ```sh
-npx expo start
+pnpm run start
 ```
 
 ## 🚀 Version
 
 #### version
 
-- Nodejs: `v20.17.0`
+- Node(LTS: Iron): `v20.17.0`
+- pnpm: `9.11.0`
 - expo: `^51.0.28`
 - react-native: `0.74.5`
