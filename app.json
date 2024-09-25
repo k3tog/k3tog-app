@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/k3tog_logo_square@4x-icon.png",
-    "scheme": "myapp",
+    "scheme": "k3tog",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/k3tog_logo_square@4x-splash.png",
@@ -26,6 +26,7 @@
       "output": "static",
       "favicon": "./assets/images/k3tog_logo_square@4x-icon.png"
     },
+    "plugins": ["expo-router", "expo-font"],
     "experiments": {
       "typedRoutes": true
     }

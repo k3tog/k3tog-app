@@ -8,8 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "startc": "expo start --clear",
-    "dev": "expo start --clear --ios --web",
+    "iosweb": "expo start --clear --ios --web",
+    "startc": "watchman watch-del-all && watchman shutdown-server && expo start -c",
     "watch-del-all": "watchman watch-del-all && watchman shutdown-server"
   },
   "jest": {
