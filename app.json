@@ -4,11 +4,11 @@
     "slug": "k3tog-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/k3tog_logo_square@4x-icon.png",
+    "icon": "./assets/images/app/k3tog_logo_square@4x-icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/k3tog_logo_square@4x-splash.png",
+      "image": "./assets/images/app/k3tog_logo_square@4x-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#f8f4fb"
     },
@@ -17,19 +17,16 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/k3tog_logo_square@4x-icon.png",
+        "foregroundImage": "./assets/images/app/k3tog_logo_square@4x-icon.png",
         "backgroundColor": "#f8f4fb"
       }
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/k3tog_logo_square@4x-icon.png"
+      "favicon": "./assets/images/app/k3tog_logo_square@4x-icon.png"
     },
-    "plugins": [
-      "expo-router",
-      "expo-font"
-    ],
+    "plugins": ["expo-router", "expo-font"],
     "experiments": {
       "typedRoutes": true
     }
