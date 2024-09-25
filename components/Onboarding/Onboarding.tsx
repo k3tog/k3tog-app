@@ -1,27 +1,27 @@
+import { FlashList } from '@shopify/flash-list';
 import { useRef, useState } from 'react';
-import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import OnboardingSlidesItem from './SlidesItem';
 import OnboardingSlidesPaginator from './SlidesPaginator';
 
 const Onboarding = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [current, setCurrent] = useState<T_OnboardingSlidesItem>(slidesData[0]);
   const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef(null);
   const onViewableItemsChanged = useRef(({ viewableItems }: any) => {
-    const _viewableItems = viewableItems?.[0] || { index: 0 };
-    const _currentIndex = _viewableItems?.[0]?.index || 0;
-    setCurrentIndex(_currentIndex);
+    const { item: _current } = viewableItems?.[0] || {};
+    _current && setCurrent(_current);
   }).current;
   const viewabilityConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
   return (
     <View style={styles.Container}>
       <View style={styles.ContentContainer}>
         <View style={styles.ImageBox}>
-          <FlatList
+          <FlashList
             ref={flatListRef}
             data={slidesData}
-            renderItem={({ item, index }) => <OnboardingSlidesItem {...item} index={index} />}
+            renderItem={({ item }) => <OnboardingSlidesItem image={item?.image} />}
             horizontal
             showsHorizontalScrollIndicator={false}
             pagingEnabled
@@ -31,14 +31,15 @@ const Onboarding = () => {
             scrollEventThrottle={32}
             onViewableItemsChanged={onViewableItemsChanged}
             viewabilityConfig={viewabilityConfig}
+            estimatedItemSize={426}
           />
         </View>
         <View style={styles.PaginatorBox}>
           <OnboardingSlidesPaginator data={slidesData} scrollX={scrollX} />
         </View>
         <View style={styles.TextsBox}>
-          <Text style={styles.title}>{slidesData?.[currentIndex || 0]?.title}</Text>
-          <Text style={styles.description}>{slidesData?.[currentIndex || 0]?.description}</Text>
+          <Text style={styles.title}>{current?.title}</Text>
+          <Text style={styles.description}>{current?.description}</Text>
         </View>
       </View>
       <View style={styles.ButtonContainer}>
@@ -71,9 +72,10 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   ImageBox: {
-    flex: 1,
-    height: '66.5%',
-    maxHeight: 426,
+    flexGrow: 1,
+    flexDirection: 'row',
+    maxHeight: '66.5%',
+    height: 426,
   },
   PaginatorBox: {
     height: 50,

@@ -1,8 +1,8 @@
 import { Image, StyleSheet, useWindowDimensions } from 'react-native';
 
-const OnboardingSlidesItem = ({ image, index }: T_OnboardingSlidesItem['image']) => {
-  console.log('OnboardingSlidesItem', { image, index });
+const OnboardingSlidesItem = ({ image }: T_OnboardingSlidesItem['image']) => {
   const { width } = useWindowDimensions();
+  if (!image) return null;
   return <Image source={image} style={[styles.image, { width, resizeMode: 'cover' }]} />;
 };
 export default OnboardingSlidesItem;
