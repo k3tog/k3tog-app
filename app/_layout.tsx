@@ -26,7 +26,7 @@ export default function RootLayout() {
         console.error(e);
       }
     };
-    checkOnboarded();
+    // checkOnboarded();
   }, []);
 
   useEffect(() => {
