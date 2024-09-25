@@ -1,5 +1,6 @@
-import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import Onboarding from '@/components/Onboarding/Onboarding';
 
 export default function Index() {
   return (
@@ -10,8 +11,7 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <Text>k3tog</Text>
-      <Text style={{ fontFamily: 'ExtraBold_800' }}>k3tog</Text>
+      <Onboarding />
     </SafeAreaView>
   );
 }
