@@ -1,7 +1,8 @@
 import { FlashList } from '@shopify/flash-list';
 import { useRef, useState } from 'react';
-import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, StyleSheet, Text, View } from 'react-native';
 
+import Button from '../Button/Button';
 import OnboardingSlidesItem from './SlidesItem';
 import OnboardingSlidesPaginator from './SlidesPaginator';
 
@@ -43,12 +44,12 @@ const Onboarding = () => {
         </View>
       </View>
       <View style={styles.ButtonContainer}>
-        <TouchableOpacity style={stylesButtonType1.Wrap} onPress={() => {}}>
-          <Text style={stylesButtonType1.text}>Get started</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={stylesButtonType2.Wrap} onPress={() => {}}>
-          <Text style={stylesButtonType2.text}>Log in</Text>
-        </TouchableOpacity>
+        <Button primary onPress={() => {}}>
+          Get started
+        </Button>
+        <Button secondary onPress={() => {}}>
+          Log in
+        </Button>
       </View>
     </View>
   );
@@ -108,43 +109,6 @@ const styles = StyleSheet.create({
     color: '#131214',
     textAlign: 'center',
     fontFamily: 'PlusJakartaSans-Regular',
-  },
-});
-
-const stylesButtonType1 = StyleSheet.create({
-  Wrap: {
-    borderRadius: 9999,
-    height: 48,
-    alignSelf: 'stretch',
-    backgroundColor: '#7257ff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    textAlign: 'center',
-    fontFamily: 'PlusJakartaSans-Bold',
-    fontWeight: '700',
-    lineHeight: 16,
-    fontSize: 16,
-    color: '#fff',
-  },
-});
-
-const stylesButtonType2 = StyleSheet.create({
-  Wrap: {
-    borderRadius: 9999,
-    height: 48,
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    textAlign: 'center',
-    fontFamily: 'PlusJakartaSans-Bold',
-    fontWeight: '700',
-    lineHeight: 16,
-    fontSize: 16,
-    color: '#5336e2',
   },
 });
 
