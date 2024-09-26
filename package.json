@@ -8,8 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "startc": "expo start --clear",
-    "dev": "expo start --clear --ios --web",
+    "iosweb": "expo start --clear --ios --web",
+    "startc": "watchman watch-del-all && watchman shutdown-server && expo start -c",
     "watch-del-all": "watchman watch-del-all && watchman shutdown-server"
   },
   "jest": {
@@ -19,7 +19,9 @@
     "@expo-google-fonts/plus-jakarta-sans": "^0.2.3",
     "@expo/metro-runtime": "~3.2.3",
     "@expo/vector-icons": "^14.0.2",
+    "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/native": "^6.0.2",
+    "@shopify/flash-list": "1.6.4",
     "expo": "^51.0.28",
     "expo-constants": "~16.0.2",
     "expo-font": "~12.0.10",
