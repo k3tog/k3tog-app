@@ -38,4 +38,4 @@ next-env.d.ts
 .idea
 *.iml
 *.ipr
-*.iws
+*.iws!/pnpm-lock.yaml
