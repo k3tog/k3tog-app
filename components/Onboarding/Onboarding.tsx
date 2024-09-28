@@ -5,8 +5,10 @@ import { Animated, StyleSheet, Text, View } from 'react-native';
 import Button from '../Button/Button';
 import OnboardingSlidesItem from './SlidesItem';
 import OnboardingSlidesPaginator from './SlidesPaginator';
+import { useRouter } from 'expo-router';
 
 const Onboarding = () => {
+  const router = useRouter();
   const [current, setCurrent] = useState<T_OnboardingSlidesItem>(slidesData[0]);
   const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef(null);
@@ -47,7 +49,12 @@ const Onboarding = () => {
         <Button primary onPress={() => {}}>
           Get started
         </Button>
-        <Button secondary onPress={() => {}}>
+        <Button
+          secondary
+          onPress={() => {
+            router.push('/auth/login-options');
+          }}
+        >
           Log in
         </Button>
       </View>
