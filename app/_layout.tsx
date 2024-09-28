@@ -5,6 +5,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { setCustomText } from 'react-native-global-props';
+import { enableScreens } from 'react-native-screens';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -46,9 +47,11 @@ export default function RootLayout() {
 
   if (!LoadedApp) return null;
   setCustomText(PlusJakartaSansFontGlobalProps);
+  enableScreens(false);
+
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
     </Stack>
   );
 }
