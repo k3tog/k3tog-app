@@ -1,9 +1,20 @@
 import { FontAwesome } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
+import { Tabs, usePathname } from 'expo-router';
+const withOutTabsPaths = ['/new/stackTest'];
 
 export default function TabLayout() {
+  const pathName = usePathname();
+
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: '#7257ff', headerShown: false }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: '#7257ff',
+        headerShown: false,
+        tabBarStyle: {
+          display: withOutTabsPaths.includes(pathName) ? 'none' : 'flex',
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{

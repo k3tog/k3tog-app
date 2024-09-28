@@ -31,9 +31,9 @@ export default function Dashboard() {
 
   if (!hasOnboarded) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <Onboarding />
-      </SafeAreaView>
+      </View>
     );
   }
 
