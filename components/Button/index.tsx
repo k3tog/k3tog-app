@@ -22,6 +22,7 @@ const Button = ({
   style,
   primary,
   secondary,
+  type = 'primary',
   ...props
 }: React.PropsWithChildren<
   TouchableWithoutFeedbackProps & {
@@ -33,14 +34,14 @@ const Button = ({
     // TODO: will remove this
     primary?: boolean;
     secondary?: boolean;
+    type?: 'primary' | 'secondary' | 'cancel';
   }
 >) => {
-  const type = primary ? 'Primary1' : secondary ? 'Secondary1' : 'Primary1';
   return (
     <TouchableOpacity
       disabled={disabled}
       activeOpacity={activeOpacity}
-      style={[stylesBase.Button, getStylesByKey(`${type}_bg`), disabled && getStylesByKey(`${type}_disabled`), style]}
+      style={[stylesBase.Button, getStylesByKey(`${type}_bg`), disabled && getStylesByKey('disabled'), style]}
       {...props}
     >
       {loading ? (
@@ -50,7 +51,7 @@ const Button = ({
           style={[
             stylesBase.Title,
             getStylesByKey(`${type}_title`),
-            disabled && getStylesByKey(`${type}_title_disabled`),
+            disabled && getStylesByKey('title_disabled'),
             titleStyle,
           ]}
         >
@@ -78,29 +79,30 @@ const stylesBase = StyleSheet.create({
     fontSize: 16,
     color: '#fff',
   },
-  Primary1_bg: {
+  primary_bg: {
     backgroundColor: '#7257ff',
   },
-  Primary1_disabled: {
-    backgroundColor: '#DADDDE',
-  },
-  Primary1_title: {
+  primary_title: {
     color: '#fff',
   },
-  Primary1_title_disabled: {
-    color: '#898D8F',
-  },
-  Secondary1_bg: {
+
+  secondary_bg: {
     backgroundColor: '#fff',
   },
-  Secondary1_disabled: {
-    backgroundColor: '#DADDDE',
-  },
-  Secondary1_title: {
+  secondary_title: {
     color: '#7257ff',
   },
-  Secondary1_title_disabled: {
+  title_disabled: {
     color: '#898D8F',
+  },
+  disabled: {
+    backgroundColor: '#DADDDE',
+  },
+  cancel_bg: {
+    backgroundColor: '#5336E2',
+  },
+  cancel_title: {
+    color: '#5336E2',
   },
 });
 
