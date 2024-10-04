@@ -1,7 +1,16 @@
 import images from '@/constants/images';
-import { Link } from 'expo-router';
+import { Href, Link } from 'expo-router';
 import { useState } from 'react';
-import { TouchableOpacity, Text, View, Image, StyleSheet, Pressable, ImageSourcePropType, ScrollView } from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  Pressable,
+  ImageSourcePropType,
+  ScrollView,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const categories = [
@@ -39,12 +48,12 @@ type CategoryProps = { category: string; title: string; image: string };
 
 const Category = ({ category, title, image }: CategoryProps) => (
   <View style={styles.category_container}>
-    {/* <Link href={{ pathname: `/collection/${category as string}` }} asChild> */}
-    <TouchableOpacity style={styles.category_touchable}>
-      <Image source={{ uri: image }} style={styles.category_image} />
-      <Text style={styles.category_title}>{title}</Text>
-    </TouchableOpacity>
-    {/* </Link> */}
+    <Link href={`/collection/${category}` as Href<string>} asChild>
+      <TouchableOpacity style={styles.category_touchable}>
+        <Image source={{ uri: image }} style={styles.category_image} />
+        <Text style={styles.category_title}>{title}</Text>
+      </TouchableOpacity>
+    </Link>
   </View>
 );
 
@@ -106,7 +115,8 @@ export default function Collection() {
               category={item.category}
               title={item.title}
               image={
-                item.image || 'https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg'
+                item.image ||
+                'https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg'
               }
             />
           ))}
@@ -167,5 +177,5 @@ const styles = StyleSheet.create({
   },
   category_title: {
     marginTop: 8,
-  }
+  },
 });
