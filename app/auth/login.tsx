@@ -1,5 +1,7 @@
-import Button from '@/components/Button/Button';
-import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } from 'react-native';
+import Button from '@/components/Button';
+import Input from '@/components/Input';
+import { useState } from 'react';
+import { KeyboardAvoidingView, Platform, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
@@ -20,6 +22,8 @@ const styles = StyleSheet.create({
 
 export default function LoginOptions() {
   const { bottom } = useSafeAreaInsets();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <KeyboardAvoidingView
@@ -33,12 +37,8 @@ export default function LoginOptions() {
     >
       <View style={{ flex: 1, padding: 16, paddingVertical: 16 + bottom }}>
         <View style={styles.input_filed_area}>
-          <TextInput style={{ borderColor: 'grey', borderWidth: 1 }} placeholder="Email">
-            Email
-          </TextInput>
-          <TextInput placeholder="Password" style={{ borderColor: 'grey', borderWidth: 1 }}>
-            PassWord
-          </TextInput>
+          <Input value={email} onChangeText={setEmail} placeholder={'Email'} />
+          <Input value={password} onChangeText={setPassword} placeholder={'Password'} secureTextEntry={true} />
           <Text style={styles.forgot_password}>Forgot Password? </Text>
         </View>
         <View style={styles.login_button_area}>

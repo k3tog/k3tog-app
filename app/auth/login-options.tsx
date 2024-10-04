@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/Button';
 import { useRouter } from 'expo-router';
 import { Image, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
