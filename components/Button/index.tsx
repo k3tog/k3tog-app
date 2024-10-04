@@ -34,7 +34,7 @@ const Button = ({
     // TODO: will remove this
     primary?: boolean;
     secondary?: boolean;
-    type: 'primary' | 'secondary' | 'cancel';
+    type?: 'primary' | 'secondary' | 'cancel';
   }
 >) => {
   return (

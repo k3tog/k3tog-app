@@ -46,11 +46,11 @@ const Onboarding = () => {
         </View>
       </View>
       <View style={styles.ButtonContainer}>
-        <Button primary onPress={() => {}}>
+        <Button type={'primary'} onPress={() => {}}>
           Get started
         </Button>
         <Button
-          secondary
+          type={'secondary'}
           onPress={() => {
             router.push('/auth/login-options');
           }}
