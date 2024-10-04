@@ -1,3 +1,4 @@
+import { Href, useRouter } from 'expo-router';
 import { Text, View, Image, StyleSheet, ImageSourcePropType, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -39,9 +40,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const NewCard = ({ title, content, source }: { title: string; content: string; source: ImageSourcePropType }) => {
+const NewCard = ({
+  title,
+  content,
+  source,
+  path,
+}: {
+  title: string;
+  content: string;
+  source: ImageSourcePropType;
+  path: Href<string>;
+}) => {
+  const router = useRouter();
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => router.push(path)}>
       <Image source={source} style={styles.image} />
       <View style={{ gap: 8 }}>
         <Text style={styles.card_title}>{title}</Text>
