@@ -43,7 +43,6 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Dashboard',
-          headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabIcon icon={icons.dashboardIcon} color={color} name="Dashboard" focused={focused} />
           ),
