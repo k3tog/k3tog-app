@@ -6,11 +6,6 @@ import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const styles = StyleSheet.create({
-  forgot_password: {
-    color: '#7257FF',
-    fontSize: 16,
-    fontWeight: '700',
-  },
   input_filed_area: {
     gap: 16,
   },
