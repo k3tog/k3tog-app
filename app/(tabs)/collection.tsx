@@ -108,7 +108,8 @@ export default function Collection() {
           </Text>
         </Pressable>
       </View>
-      <ScrollView style={{ flex: 1, borderWidth: 1 }}>
+      {/* TODO(irene): remove gap */}
+      <ScrollView style={{ flex: 1 }}>
         <View style={styles.category_wrapper}>
           {categories.map((item, index) => (
             <Category
