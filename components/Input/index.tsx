@@ -94,7 +94,7 @@ const Input = forwardRef<TextInput, InputProps>(
       <View>
         {title && (
           <>
-            <Text style={styles.Label}>{title}</Text>
+            <Text style={styles.label}>{title}</Text>
             <View style={{ height: 16 }} />
           </>
         )}
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
     borderRadius: 9,
   },
-  Label: {
+  label: {
     color: '#131214',
     fontWeight: '700',
     fontSize: 16,
