@@ -5,7 +5,8 @@ const CollectionStackLayout = () => {
     <Stack
       screenOptions={{
         headerShadowVisible: false,
-      }}>
+      }}
+    >
       <Stack.Screen name="projects" options={{ headerShown: false }} />
       <Stack.Screen
         name="patterns"
