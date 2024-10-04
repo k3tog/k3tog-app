@@ -1,6 +1,28 @@
-import { FontAwesome } from '@expo/vector-icons';
+import icons from '@/constants/icons';
 import { Tabs, usePathname } from 'expo-router';
+import { ImageSourcePropType, View, Image } from 'react-native';
 const withOutTabsPaths = ['/new/stackTest'];
+
+type TabIconProps = {
+  icon: ImageSourcePropType;
+  color: string;
+  name: string;
+  focused: boolean;
+};
+
+const TabIcon = ({ icon, color, name, focused }: TabIconProps) => {
+  return (
+    <View>
+      {focused ? (
+        <View>
+          <Image source={icon} resizeMode="contain" tintColor={color} />
+        </View>
+      ) : (
+        <Image source={icon} resizeMode="contain" tintColor={color} />
+      )}
+    </View>
+  );
+};
 
 export default function TabLayout() {
   const pathName = usePathname();
@@ -10,6 +32,8 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: '#7257ff',
         headerShown: false,
+        // TODO(irene): need to figure out how to tint the label as well
+        tabBarLabelStyle: { fontSize: 12, color: '#898D8F' },
         tabBarStyle: {
           display: withOutTabsPaths.includes(pathName) ? 'none' : 'flex',
         },
@@ -19,7 +43,9 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Dashboard',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon icon={icons.dashboardIcon} color={color} name="Dashboard" focused={focused} />
+          ),
         }}
       />
 
@@ -27,7 +53,9 @@ export default function TabLayout() {
         name="collection"
         options={{
           title: 'Collection',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon icon={icons.collectionIcon} color={color} name="Collection" focused={focused} />
+          ),
         }}
       />
 
@@ -35,7 +63,9 @@ export default function TabLayout() {
         name="new"
         options={{
           title: 'New',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="eraser" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon icon={icons.newIcon} color={color} name="New" focused={focused} />
+          ),
         }}
       />
 
@@ -43,14 +73,18 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="facebook" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon icon={icons.exploreIcon} color={color} name="Explore" focused={focused} />
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="flash" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon icon={icons.profileIcon} color={color} name="Profile" focused={focused} />
+          ),
         }}
       />
     </Tabs>
