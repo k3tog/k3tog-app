@@ -44,14 +44,15 @@ const categories = [
   },
 ];
 
-type CategoryProps = { category: string; title: string; image: string };
+type CategoryProps = { category: string; title: string; subtitle: string; image: ImageSourcePropType };
 
-const Category = ({ category, title, image }: CategoryProps) => (
+const Category = ({ category, title, subtitle, image }: CategoryProps) => (
   <View style={styles.category_container}>
     <Link href={`/collection/${category}` as Href<string>} asChild>
-      <TouchableOpacity style={styles.category_touchable}>
-        <Image source={{ uri: image }} style={styles.category_image} />
+      <TouchableOpacity>
+        <Image source={image} style={styles.category_image} />
         <Text style={styles.category_title}>{title}</Text>
+        <Text style={styles.category_subtitle}>{subtitle}</Text>
       </TouchableOpacity>
     </Link>
   </View>
@@ -107,13 +108,14 @@ export default function Collection() {
           </Text>
         </Pressable>
       </View>
-      <ScrollView>
-        <View>
+      <ScrollView style={{ flex: 1, borderWidth: 1 }}>
+        <View style={styles.category_wrapper}>
           {categories.map((item, index) => (
             <Category
-              // key={keyExtractor(item, index)}
+              key={`${index}-${item.category}`}
               category={item.category}
               title={item.title}
+              subtitle={item.content}
               image={
                 item.image ||
                 'https://t4.ftcdn.net/jpg/02/51/95/53/360_F_251955356_FAQH0U1y1TZw3ZcdPGybwUkH90a3VAhb.jpg'
@@ -160,22 +162,34 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
   },
-  category_container: {
-    width: '48%',
-    marginBottom: 16,
+  category_wrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 24,
   },
-  category_touchable: {
-    borderWidth: 1,
+  category_container: {
+    display: 'flex',
     flexDirection: 'column',
+    width: '48%', // Adjusted for 2 columns
     alignItems: 'flex-start',
+    marginBottom: 16, // Added margin for spacing
   },
   category_image: {
-    borderRadius: 8,
-    width: '100%',
-    aspectRatio: 1, // This maintains the aspect ratio
+    borderRadius: 16,
+    width: 172,
+    height: 217,
     resizeMode: 'cover',
+    marginBottom: 12,
   },
   category_title: {
-    marginTop: 8,
+    fontSize: 18,
+    fontWeight: 800,
+  },
+  category_subtitle: {
+    fontSize: 14,
+    color: '#6E7375',
+    lineHeight: 21,
   },
 });
