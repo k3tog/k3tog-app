@@ -1,20 +1,21 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { Controller, useForm } from 'react-hook-form';
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
-// import { TextInput } from 'react-native-gesture-handler';
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Select from '@/components/Select';
+import Label from '@/components/Input/Label';
 
-type newPatternFormType = {
+type FormData = {
   yarnName: string;
   brandName: string;
   color: string;
   needleRange: {
-    form: string;
+    from: string;
     to: string;
   };
   hookRange: {
-    form: string;
+    from: string;
     to: string;
   };
   weight: string;
@@ -23,15 +24,15 @@ type newPatternFormType = {
 };
 
 const styles = StyleSheet.create({
-  input_filed_area: {
-    gap: 16,
-  },
   login_button_area: {
     display: 'flex',
     flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
+  },
+  dropdown: {
+    zIndex: 1000, // zIndex 조정
   },
 });
 
@@ -43,11 +44,11 @@ export default function NewPattern() {
       brandName: '',
       color: '',
       needleRange: {
-        form: '',
+        from: '',
         to: '',
       },
       hookRange: {
-        form: '',
+        from: '',
         to: '',
       },
       weight: '',
@@ -55,7 +56,7 @@ export default function NewPattern() {
       // photos:[]
     },
   });
-  const onSubmit = (data: newPatternFormType) => console.log(data);
+  const onSubmit = (data: FormData) => console.log(data);
 
   return (
     <KeyboardAvoidingView
@@ -68,52 +69,149 @@ export default function NewPattern() {
       }}
     >
       <View style={{ flex: 1, padding: 16, paddingBottom: 16 + bottom }}>
-        <View style={styles.input_filed_area}>
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <Input title="Yarn Name" placeholder="Enter yarn name" onChangeText={onChange} value={value} />
-            )}
-            name="yarnName"
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <Input title="Brand Name" placeholder="Enter brand name" onChangeText={onChange} value={value} />
-            )}
-            name="brandName"
-          />
-          {/* Needle Range */}
-          {/* Hook Range */}
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <Input title="Color" placeholder="Enter color name" onChangeText={onChange} value={value} />
-            )}
-            // how to get a color ?
-            // color code? rgba? type is string?
-            name="color"
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <Input title="Weight" placeholder="Enter weight(grams) per yarn" onChangeText={onChange} value={value} />
-            )}
-            name="weight"
-          />
-        </View>
+        <ScrollView>
+          <View style={{ gap: 16 }}>
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value } }) => (
+                <Input title="Yarn Name" placeholder="Enter yarn name" onChangeText={onChange} value={value} />
+              )}
+              name="yarnName"
+            />
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value } }) => (
+                <Input title="Brand Name" placeholder="Enter brand name" onChangeText={onChange} value={value} />
+              )}
+              name="brandName"
+            />
+
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value } }) => (
+                <Input title="Color" placeholder="Enter color name" onChangeText={onChange} value={value} />
+              )}
+              name="color"
+            />
+
+            <View style={{ zIndex: 100 }}>
+              <Label title="Needle range" />
+              <View style={{ flexDirection: 'row', gap: 16 }}>
+                <View style={{ flex: 1 }}>
+                  <Controller
+                    control={control}
+                    name="needleRange.from"
+                    render={({ field: { onChange, value } }) => (
+                      <Select
+                        onChange={onChange}
+                        value={value}
+                        items={[
+                          { label: '2.0 mm', value: '2.0' },
+                          { label: '2.5 mm', value: '2.5' },
+                          { label: '3.0 mm', value: '3.0' },
+                          { label: '3.5 mm', value: '3.5' },
+                          { label: '4.0 mm', value: '4.0' },
+                        ]}
+                        placeholder="From"
+                      />
+                    )}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Controller
+                    control={control}
+                    name="needleRange.to"
+                    render={({ field: { onChange, value } }) => (
+                      <Select
+                        onChange={onChange}
+                        value={value}
+                        items={[
+                          { label: '2.0 mm', value: '2.0' },
+                          { label: '2.5 mm', value: '2.5' },
+                          { label: '3.0 mm', value: '3.0' },
+                          { label: '3.5 mm', value: '3.5' },
+                          { label: '4.0 mm', value: '4.0' },
+                        ]}
+                        placeholder="To"
+                      />
+                    )}
+                  />
+                </View>
+              </View>
+            </View>
+
+            <View style={{ zIndex: 99 }}>
+              <Label title="Hook Range" />
+              <View style={{ flexDirection: 'row', gap: 16 }}>
+                <View style={{ flex: 1 }}>
+                  <Controller
+                    control={control}
+                    name="hookRange.from"
+                    render={({ field: { onChange, value } }) => (
+                      <Select
+                        onChange={onChange}
+                        value={value}
+                        items={[
+                          { label: '2.0 mm', value: '2.0' },
+                          { label: '2.5 mm', value: '2.5' },
+                          { label: '3.0 mm', value: '3.0' },
+                          { label: '3.5 mm', value: '3.5' },
+                          { label: '4.0 mm', value: '4.0' },
+                        ]}
+                        placeholder="From"
+                      />
+                    )}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Controller
+                    control={control}
+                    name="needleRange.to"
+                    render={({ field: { onChange, value } }) => (
+                      <Select
+                        onChange={onChange}
+                        value={value}
+                        items={[
+                          { label: '2.0 mm', value: '2.0' },
+                          { label: '2.5 mm', value: '2.5' },
+                          { label: '3.0 mm', value: '3.0' },
+                          { label: '3.5 mm', value: '3.5' },
+                          { label: '4.0 mm', value: '4.0' },
+                        ]}
+                        placeholder="To"
+                      />
+                    )}
+                  />
+                </View>
+              </View>
+            </View>
+
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  title="Weight"
+                  placeholder="Enter weight(grams) per yarn"
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+              name="weight"
+            />
+          </View>
+        </ScrollView>
 
         <View style={styles.login_button_area}>
           <View style={{ flex: 1, flexDirection: 'row' }}>
