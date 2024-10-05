@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function NewPattern() {
+export default function NewYarn() {
   const { bottom } = useSafeAreaInsets();
   const { control, handleSubmit } = useForm({
     defaultValues: {
