@@ -210,13 +210,33 @@ export default function NewPattern() {
               )}
               name="weight"
             />
+
+            <View style={{ height: 200 }}>
+              <Controller
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                name="notes"
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    title="Notes"
+                    placeholder="Write any additional details here"
+                    onChangeText={onChange}
+                    value={value}
+                    multiline
+                    numberOfLines={4}
+                    styleView={{ height: 100 }}
+                  />
+                )}
+              />
+            </View>
           </View>
         </ScrollView>
-
         <View style={styles.login_button_area}>
           <View style={{ flex: 1, flexDirection: 'row' }}>
-            <Button title="Cancel" type={'primary'} style={{ flex: 1 }} onPress={handleSubmit(onSubmit)} />
-            <Button title="Save" type={'cancel'} style={{ flex: 1 }} disabled />
+            <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={handleSubmit(onSubmit)} />
+            <Button title="Save" type={'primary'} style={{ flex: 1 }} disabled />
           </View>
         </View>
       </View>
