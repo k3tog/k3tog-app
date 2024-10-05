@@ -52,7 +52,7 @@ export default function Select({
   const [open, setOpen] = useState(false);
 
   return (
-    <View style={{ zIndex: zIndex, gap: 16 }}>
+    <View style={{ zIndex: zIndex }}>
       <Label title={title} />
       <DropDownPicker
         open={open}
