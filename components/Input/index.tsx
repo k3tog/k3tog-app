@@ -91,13 +91,8 @@ const Input = forwardRef<TextInput, InputProps>(
     }, [inputRef, styleInput, value, props, skeleton, editable]);
 
     return (
-      <View>
-        {title && (
-          <>
-            <Text style={styles.label}>{title}</Text>
-            <View style={{ height: 16 }} />
-          </>
-        )}
+      <View style={{ gap: 16 }}>
+        {title && <Text style={styles.label}>{title}</Text>}
         <View
           ref={viewRef}
           style={[
