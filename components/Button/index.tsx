@@ -99,7 +99,7 @@ const stylesBase = StyleSheet.create({
     backgroundColor: '#DADDDE',
   },
   cancel_bg: {
-    backgroundColor: '#5336E2',
+    backgroundColor: '#F0EDFF',
   },
   cancel_title: {
     color: '#5336E2',
