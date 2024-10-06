@@ -1,0 +1,13 @@
+import { Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+export default function NewGauge() {
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>NewGauge</Text>
+        <Text style={{ fontFamily: 'ExtraBold_800' }}>NewGauge</Text>
+      </View>
+    </SafeAreaView>
+  );
+}

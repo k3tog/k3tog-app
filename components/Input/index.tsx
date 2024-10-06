@@ -3,6 +3,7 @@ import {
   Platform,
   StyleProp,
   StyleSheet,
+  Text,
   TextInput,
   TextInputProps,
   TextStyle,
@@ -19,6 +20,7 @@ type InputProps = {
   error?: boolean;
   skeleton?: boolean;
   value?: string;
+  title?: string;
 } & TextInputProps;
 
 // TODO: hovered - implement hover effect for web
@@ -26,7 +28,7 @@ type InputProps = {
 // TODO: leftIcon, rightIcon - implement with Icon
 
 const Input = forwardRef<TextInput, InputProps>(
-  ({ styleView, styleInput, error, disabled, skeleton, value, ...props }: InputProps, ref) => {
+  ({ styleView, styleInput, error, disabled, skeleton, value, title, ...props }: InputProps, ref) => {
     Input.displayName = 'Input';
 
     const [focused, setFocused] = useState(false);
@@ -57,11 +59,11 @@ const Input = forwardRef<TextInput, InputProps>(
               if (!error && editable) inputRef.current?.focus();
             }}
           >
-            <View style={[styles.container, styleStatus, styleView]}>{children}</View>
+            <View style={[styles.container, styleStatus]}>{children}</View>
           </TouchableWithoutFeedback>
         );
       },
-      [inputRef, styleView, skeleton, disabled, error, focused, hovered, value, editable],
+      [inputRef, skeleton, disabled, error, focused, hovered, value, editable],
     );
 
     const renderInput = useCallback(() => {
@@ -78,25 +80,35 @@ const Input = forwardRef<TextInput, InputProps>(
               props?.onFocus?.(e);
             }}
             ref={inputRef}
-            style={[styles.input, styleInput]}
+            style={[styles.input, styleInput, props.style]}
             value={value}
             placeholder={!skeleton && props?.placeholder ? props?.placeholder : ''}
             editable={editable}
+            placeholderTextColor="#898D8F"
           />
         </View>
       );
     }, [inputRef, styleInput, value, props, skeleton, editable]);
 
     return (
-      <View
-        ref={viewRef}
-        style={[
-          styles.wrapper,
-          focused && !skeleton && !disabled && { ...styles.focus, ...styles.focusShadow },
-          error && styles.error,
-        ]}
-      >
-        {renderContainer(renderInput())}
+      <View>
+        {title && (
+          <>
+            <Text style={styles.label}>{title}</Text>
+            <View style={{ height: 16 }} />
+          </>
+        )}
+        <View
+          ref={viewRef}
+          style={[
+            styles.wrapper,
+            focused && !skeleton && !disabled && { ...styles.focus, ...styles.focusShadow },
+            styleView,
+            error && styles.error,
+          ]}
+        >
+          {renderContainer(renderInput())}
+        </View>
       </View>
     );
   },
@@ -106,11 +118,16 @@ export default Input;
 const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
-    height: 48,
+    minHeight: 48,
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: 'transparent',
     borderRadius: 9,
+  },
+  label: {
+    color: '#131214',
+    fontWeight: '700',
+    fontSize: 16,
   },
   container: {
     flex: 1,
