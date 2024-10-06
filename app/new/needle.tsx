@@ -110,7 +110,7 @@ export default function NewNeedle() {
           </View>
         </ScrollView>
         <View style={styles.login_button_area}>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1, flexDirection: 'row', gap: 16 }}>
             <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={handleSubmit(onSubmit)} />
             <Button title="Save" type={'primary'} style={{ flex: 1 }} disabled />
           </View>

@@ -6,7 +6,7 @@ import Label from '../Input/Label';
 
 type itemType = {
   label: string;
-  value: string;
+  value: string | number;
 };
 
 const styles = StyleSheet.create({

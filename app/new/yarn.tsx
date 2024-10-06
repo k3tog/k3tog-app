@@ -11,17 +11,47 @@ type FormData = {
   brandName: string;
   color: string;
   needleRange: {
-    from: string;
-    to: string;
+    from: number;
+    to: number;
   };
   hookRange: {
-    from: string;
-    to: string;
+    from: number;
+    to: number;
   };
-  weight: string;
+  weight: number;
   notes: string;
   // photos:[]
 };
+
+const needleSizeOptions = [
+  { label: 'US 0 (2.0 mm)', value: 2.0 },
+  { label: 'US 1 (2.25 mm)', value: 2.25 },
+  { label: 'US 2 (2.75 mm)', value: 2.75 },
+  { label: 'US 3 (3.25 mm)', value: 3.25 },
+  { label: 'US 4 (3.5 mm)', value: 3.5 },
+  { label: 'US 5 (3.75 mm)', value: 3.75 },
+  { label: 'US 6 (4.0 mm)', value: 4.0 },
+  { label: 'US 7 (4.5 mm)', value: 4.5 },
+  { label: 'US 8 (5.0 mm)', value: 5.0 },
+  { label: 'US 9 (5.5 mm)', value: 5.5 },
+  { label: 'US 10 (6.0 mm)', value: 6.0 },
+];
+
+const hookSizeOptions = [
+  { label: 'B-1 (2.25 mm)', value: 2.25 },
+  { label: 'C-2 (2.75 mm)', value: 2.75 },
+  { label: 'D-3 (3.25 mm)', value: 3.25 },
+  { label: 'E-4 (3.5 mm)', value: 3.5 },
+  { label: 'F-5 (3.75 mm)', value: 3.75 },
+  { label: 'G-6 (4.0 mm)', value: 4.0 },
+  { label: 'H-8 (5.0 mm)', value: 5.0 },
+  { label: 'I-9 (5.5 mm)', value: 5.5 },
+  { label: 'J-10 (6.0 mm)', value: 6.0 },
+  { label: 'K-10.5 (6.5 mm)', value: 6.5 },
+  { label: 'L-11 (8.0 mm)', value: 8.0 },
+  { label: 'M-13 (9.0 mm)', value: 9.0 },
+  { label: 'N-15 (10.0 mm)', value: 10.0 },
+];
 
 const styles = StyleSheet.create({
   login_button_area: {
@@ -44,14 +74,14 @@ export default function NewYarn() {
       brandName: '',
       color: '',
       needleRange: {
-        from: '',
-        to: '',
+        from: 0,
+        to: 0,
       },
       hookRange: {
-        from: '',
-        to: '',
+        from: 0,
+        to: 0,
       },
-      weight: '',
+      weight: 0,
       notes: '',
       // photos:[]
     },
@@ -102,8 +132,8 @@ export default function NewYarn() {
               )}
               name="color"
             />
-
-            <View style={{ zIndex: 100 }}>
+            {/* consider use bottom pop up instead of dropdown */}
+            <View>
               <Label title="Needle range" />
               <View style={{ flexDirection: 'row', gap: 16 }}>
                 <View style={{ flex: 1 }}>
@@ -111,18 +141,7 @@ export default function NewYarn() {
                     control={control}
                     name="needleRange.from"
                     render={({ field: { onChange, value } }) => (
-                      <Select
-                        onChange={onChange}
-                        value={value}
-                        items={[
-                          { label: '2.0 mm', value: '2.0' },
-                          { label: '2.5 mm', value: '2.5' },
-                          { label: '3.0 mm', value: '3.0' },
-                          { label: '3.5 mm', value: '3.5' },
-                          { label: '4.0 mm', value: '4.0' },
-                        ]}
-                        placeholder="From"
-                      />
+                      <Select onChange={onChange} value={value} items={needleSizeOptions} placeholder="From" />
                     )}
                   />
                 </View>
@@ -131,18 +150,7 @@ export default function NewYarn() {
                     control={control}
                     name="needleRange.to"
                     render={({ field: { onChange, value } }) => (
-                      <Select
-                        onChange={onChange}
-                        value={value}
-                        items={[
-                          { label: '2.0 mm', value: '2.0' },
-                          { label: '2.5 mm', value: '2.5' },
-                          { label: '3.0 mm', value: '3.0' },
-                          { label: '3.5 mm', value: '3.5' },
-                          { label: '4.0 mm', value: '4.0' },
-                        ]}
-                        placeholder="To"
-                      />
+                      <Select onChange={onChange} value={value} items={needleSizeOptions} placeholder="To" />
                     )}
                   />
                 </View>
@@ -157,38 +165,16 @@ export default function NewYarn() {
                     control={control}
                     name="hookRange.from"
                     render={({ field: { onChange, value } }) => (
-                      <Select
-                        onChange={onChange}
-                        value={value}
-                        items={[
-                          { label: '2.0 mm', value: '2.0' },
-                          { label: '2.5 mm', value: '2.5' },
-                          { label: '3.0 mm', value: '3.0' },
-                          { label: '3.5 mm', value: '3.5' },
-                          { label: '4.0 mm', value: '4.0' },
-                        ]}
-                        placeholder="From"
-                      />
+                      <Select onChange={onChange} value={value} items={hookSizeOptions} placeholder="From" />
                     )}
                   />
                 </View>
                 <View style={{ flex: 1 }}>
                   <Controller
                     control={control}
-                    name="needleRange.to"
+                    name="hookRange.to"
                     render={({ field: { onChange, value } }) => (
-                      <Select
-                        onChange={onChange}
-                        value={value}
-                        items={[
-                          { label: '2.0 mm', value: '2.0' },
-                          { label: '2.5 mm', value: '2.5' },
-                          { label: '3.0 mm', value: '3.0' },
-                          { label: '3.5 mm', value: '3.5' },
-                          { label: '4.0 mm', value: '4.0' },
-                        ]}
-                        placeholder="To"
-                      />
+                      <Select onChange={onChange} value={value} items={hookSizeOptions} placeholder="To" />
                     )}
                   />
                 </View>
@@ -205,7 +191,7 @@ export default function NewYarn() {
                   title="Weight"
                   placeholder="Enter weight(grams) per yarn"
                   onChangeText={onChange}
-                  value={value}
+                  value={value.toString()}
                 />
               )}
               name="weight"
@@ -234,7 +220,7 @@ export default function NewYarn() {
           </View>
         </ScrollView>
         <View style={styles.login_button_area}>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1, flexDirection: 'row', gap: 16 }}>
             <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={handleSubmit(onSubmit)} />
             <Button title="Save" type={'primary'} style={{ flex: 1 }} disabled />
           </View>

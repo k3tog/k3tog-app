@@ -6,7 +6,6 @@ export default function Explore() {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Explore</Text>
-        <Text style={{ fontFamily: 'ExtraBold_800' }}>k3tog</Text>
       </View>
     </SafeAreaView>
   );

@@ -3,21 +3,7 @@ import Input from '@/components/Input';
 import { apiUrl } from '@/constants';
 import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
-// import { TextInput } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-const styles = StyleSheet.create({
-  input_filed_area: {
-    gap: 16,
-  },
-  login_button_area: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-  },
-});
 
 export default function NewPattern() {
   const { bottom } = useSafeAreaInsets();
@@ -95,24 +81,29 @@ export default function NewPattern() {
             )}
             name="author"
           />
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                title="Description"
-                placeholder="Add details about the pattern or your note"
-                onChangeText={onChange}
-                value={value}
-              />
-            )}
-            name="description"
-          />
+          <View style={{ height: 200 }}>
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              name="description"
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  title="Description"
+                  placeholder="Add details about the pattern or your note"
+                  onChangeText={onChange}
+                  value={value}
+                  multiline
+                  numberOfLines={4}
+                  styleView={{ height: 100 }}
+                />
+              )}
+            />
+          </View>
         </View>
         <View style={styles.login_button_area}>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1, flexDirection: 'row', gap: 16 }}>
             <Button title="Cancel" type={'primary'} style={{ flex: 1 }} onPress={handleSubmit(onSubmit)} />
             <Button title="Save" type={'cancel'} style={{ flex: 1 }} disabled />
           </View>
@@ -121,3 +112,16 @@ export default function NewPattern() {
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  input_filed_area: {
+    gap: 16,
+  },
+  login_button_area: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
+});

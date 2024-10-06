@@ -6,7 +6,6 @@ export default function Profile() {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Profile</Text>
-        <Text style={{ fontFamily: 'ExtraBold_800' }}>k3tog</Text>
       </View>
     </SafeAreaView>
   );
