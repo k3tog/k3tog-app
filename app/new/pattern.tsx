@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
+import { apiUrl } from '@/constants';
 import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 // import { TextInput } from 'react-native-gesture-handler';
@@ -27,7 +28,35 @@ export default function NewPattern() {
       description: '',
     },
   });
-  const onSubmit = (data: { title: string; author: string; description: string }) => console.log(data);
+
+  const addPattern = async (data) => {
+    try {
+      const res = await fetch(`${apiUrl}/users/${'knitwithcode'}/patterns/`, {
+        method: 'POST', // 'GET'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        // POST일때만 바디
+        body: JSON.stringify({
+          name: '반미정',
+          author: '강줌모',
+        }),
+      })
+        .then((res) => {
+          return res.json().catch(() => null);
+        })
+        .catch((err) => {
+          console.error('api error message : ', err);
+        });
+
+      console.log(res, '얍');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onSubmit = (data: { title: string; author: string; description: string }) => addPattern(data);
 
   return (
     <KeyboardAvoidingView
