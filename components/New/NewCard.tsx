@@ -10,24 +10,23 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderRadius: 16,
     borderColor: '#F4F6F7',
-    borderWidth: 1,
-    // boxshadow skip in MVP
-    // shadowColor: '#000',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2,
-    // },
-    // shadowOpacity: 0.3,
-    // shadowRadius: 4,
-    // elevation: 5, // For Android
+    borderWidth: 0.5,
+    shadowColor: '#141414',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 1,
+    elevation: 1,
   },
-  card_title: {
+  cardTitle: {
     color: '#131214',
     fontSize: 16,
     fontWeight: '700',
     lineHeight: 19.2,
   },
-  card_content: {
+  cardContent: {
     color: '#6E7375',
     fontSize: 14,
     lineHeight: 21,
@@ -37,6 +36,9 @@ const styles = StyleSheet.create({
     maxHeight: '100%',
     width: 48,
     height: 48,
+  },
+  textContainer: {
+    gap: 8,
   },
 });
 
@@ -55,9 +57,9 @@ const NewCard = ({
   return (
     <TouchableOpacity style={styles.card} onPress={() => router.push(path)}>
       <Image source={source} style={styles.image} />
-      <View style={{ gap: 8 }}>
-        <Text style={styles.card_title}>{title}</Text>
-        <Text style={styles.card_content}>{content}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.cardTitle}>{title}</Text>
+        <Text style={styles.cardContent}>{content}</Text>
       </View>
     </TouchableOpacity>
   );
