@@ -1,57 +1,50 @@
-import { PlusJakartaSansFontGlobalProps, PlusJakartaSansFonts } from '@/constants/fonts';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as ExpoFont from 'expo-font';
+import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
-import { setCustomText } from 'react-native-global-props';
-import { enableScreens } from 'react-native-screens';
+import { useEffect } from 'react';
 
+// Prevent the splash screen from auto-hiding before getting the color scheme.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [hasOnboarded, setHasOnboarded] = useState(false);
-  const [LoadedApp, setLoadedApp] = useState(false);
+  const [fontsLoaded, error] = useFonts({
+    'PlusJakartaSans-Regular': require('@/assets/fonts/PlusJakartaSans-Regular.ttf'),
+    'PlusJakartaSans-Medium': require('@/assets/fonts/PlusJakartaSans-Medium.ttf'),
+    'PlusJakartaSans-Bold': require('@/assets/fonts/PlusJakartaSans-Bold.ttf'),
+    'PlusJakartaSans-ExtraBold': require('@/assets/fonts/PlusJakartaSans-ExtraBold.ttf'),
+    'PlusJakartaSans-Light': require('@/assets/fonts/PlusJakartaSans-Light.ttf'),
+    'PlusJakartaSans-SemiBold': require('@/assets/fonts/PlusJakartaSans-SemiBold.ttf'),
+    'PlusJakartaSans-ExtraLight': require('@/assets/fonts/PlusJakartaSans-ExtraLight.ttf'),
+    'PlusJakartaSans-ExtraBoldItalic': require('@/assets/fonts/PlusJakartaSans-ExtraBoldItalic.ttf'),
+    'PlusJakartaSans-Italic': require('@/assets/fonts/PlusJakartaSans-Italic.ttf'),
+    'PlusJakartaSans-LightItalic': require('@/assets/fonts/PlusJakartaSans-LightItalic.ttf'),
+    'PlusJakartaSans-ExtraLightItalic': require('@/assets/fonts/PlusJakartaSans-ExtraLightItalic.ttf'),
+    'PlusJakartaSans-SemiBoldItalic': require('@/assets/fonts/PlusJakartaSans-SemiBoldItalic.ttf'),
+    'PlusJakartaSans-BoldItalic': require('@/assets/fonts/PlusJakartaSans-BoldItalic.ttf'),
+    'PlusJakartaSans-MediumItalic': require('@/assets/fonts/PlusJakartaSans-MediumItalic.ttf'),
+  });
 
   useEffect(() => {
-    const checkOnboarded = async () => {
-      try {
-        const onboarded = await AsyncStorage.getItem('onboarded');
-        if (onboarded === null) {
-          AsyncStorage.setItem('onboarded', 'true');
-          setHasOnboarded(true);
-        } else {
-          setHasOnboarded(false);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    // checkOnboarded();
-  }, []);
+    if (error) throw error;
 
-  useEffect(() => {
-    async function init() {
-      try {
-        await ExpoFont.loadAsync({ ...PlusJakartaSansFonts });
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setLoadedApp(true);
-      }
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
     }
-    if (LoadedApp) SplashScreen.hideAsync();
-    init();
-  }, [LoadedApp]);
+  }, [fontsLoaded, error]);
 
-  if (!LoadedApp) return null;
-  setCustomText(PlusJakartaSansFontGlobalProps);
-  enableScreens(false);
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  if (!fontsLoaded && !error) {
+    return null;
+  }
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="index" />
     </Stack>
   );
 }

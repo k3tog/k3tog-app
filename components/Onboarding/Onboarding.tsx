@@ -6,6 +6,7 @@ import Button from '../Button';
 import OnboardingSlidesItem from './SlidesItem';
 import OnboardingSlidesPaginator from './SlidesPaginator';
 import { useRouter } from 'expo-router';
+import images from '@/constants/images';
 
 const Onboarding = () => {
   const router = useRouter();
@@ -17,6 +18,7 @@ const Onboarding = () => {
     _current && setCurrent(_current);
   }).current;
   const viewabilityConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+
   return (
     <View style={styles.Container}>
       <View style={styles.ContentContainer}>
@@ -46,13 +48,19 @@ const Onboarding = () => {
         </View>
       </View>
       <View style={styles.ButtonContainer}>
-        <Button type={'primary'} onPress={() => { }}>
+        <Button
+          type={'primary'}
+          onPress={() => {
+            // temporarily routing to tab
+            router.push('/(tabs)/dashboard');
+          }}
+        >
           Get started
         </Button>
         <Button
           type={'secondary'}
           onPress={() => {
-            router.push('/auth/login-options');
+            router.push('/(auth)/login-options');
           }}
         >
           Log in
@@ -69,6 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    backgroundColor: '#FFFFFF',
   },
   ContentContainer: {
     flex: 1,
@@ -125,24 +134,24 @@ const slidesData: T_OnboardingSlidesItem[] = [
     id: '1',
     title: `Start Your Knitting Journey with K3tog`,
     description: `Organize, track, and complete your knitting projects--all in one place. Let’s make your knitting experience more enjoyable!`,
-    image: require('../../assets/images/onboarding/onboarding_1.png'),
+    image: images.onboarding1,
   },
   {
     id: '2',
     title: `Capture Every Detail`,
     description: `Easily keep a log of all your knitting projects. From your first stitch to the final cast-off, track every detail -- patterns, yarns, needles and gauges.`,
-    image: require('../../assets/images/onboarding/onboarding_2.png'),
+    image: images.onboarding2,
   },
   {
     id: '3',
     title: `Organize Your Personal Stash`,
     description: `Effortlessly manage your collection of patterns, yarns and needles. Always know what you have at a glance.`,
-    image: require('../../assets/images/onboarding/onboarding_3.png'),
+    image: images.onboarding3,
   },
   {
     id: '4',
     title: `Find Inspiration`,
     description: `Explore beautiful patterns, get inspired by the work of others, and find the perfect match for your next project.`,
-    image: require('../../assets/images/onboarding/onboarding_4.png'),
+    image: images.onboarding4,
   },
 ];
