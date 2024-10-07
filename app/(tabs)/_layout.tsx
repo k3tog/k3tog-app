@@ -6,11 +6,10 @@ const withOutTabsPaths = ['/new/stackTest'];
 type TabIconProps = {
   icon: ImageSourcePropType;
   color: string;
-  name: string;
   focused: boolean;
 };
 
-const TabIcon = ({ icon, color, name, focused }: TabIconProps) => {
+const TabIcon = ({ icon, color, focused }: TabIconProps) => {
   return (
     <View>
       {focused ? (
@@ -36,16 +35,15 @@ export default function TabLayout() {
         tabBarLabelStyle: { fontSize: 12, color: '#898D8F' },
         tabBarStyle: {
           display: withOutTabsPaths.includes(pathName) ? 'none' : 'flex',
+          paddingTop: 8,
         },
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="dashboard"
         options={{
           title: 'Dashboard',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon icon={icons.dashboardIcon} color={color} name="Dashboard" focused={focused} />
-          ),
+          tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.dashboardIcon} color={color} focused={focused} />,
         }}
       />
 
@@ -53,9 +51,7 @@ export default function TabLayout() {
         name="collection"
         options={{
           title: 'Collection',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon icon={icons.collectionIcon} color={color} name="Collection" focused={focused} />
-          ),
+          tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.collectionIcon} color={color} focused={focused} />,
         }}
       />
 
@@ -63,9 +59,7 @@ export default function TabLayout() {
         name="new"
         options={{
           title: 'New',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon icon={icons.newIcon} color={color} name="New" focused={focused} />
-          ),
+          tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.newIcon} color={color} focused={focused} />,
         }}
       />
 
@@ -73,18 +67,14 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon icon={icons.exploreIcon} color={color} name="Explore" focused={focused} />
-          ),
+          tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.exploreIcon} color={color} focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'My Profile',
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon icon={icons.profileIcon} color={color} name="Profile" focused={focused} />
-          ),
+          tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.profileIcon} color={color} focused={focused} />,
         }}
       />
     </Tabs>

@@ -8,6 +8,10 @@ import newPattern from '../assets/images/new/pattern.png';
 import newYarn from '../assets/images/new/yarn.png';
 import newNeedle from '../assets/images/new/needle.png';
 import newGauge from '../assets/images/new/gauge.png';
+import onboarding1 from '../assets/images/onboarding/onboarding_1.png';
+import onboarding2 from '../assets/images/onboarding/onboarding_2.png';
+import onboarding3 from '../assets/images/onboarding/onboarding_3.png';
+import onboarding4 from '../assets/images/onboarding/onboarding_4.png';
 
 export default {
   collectionNeedles,
@@ -20,4 +24,8 @@ export default {
   newYarn,
   newNeedle,
   newGauge,
+  onboarding1,
+  onboarding2,
+  onboarding3,
+  onboarding4,
 };
