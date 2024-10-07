@@ -3,30 +3,6 @@ import { Stack, useRouter } from 'expo-router';
 import { StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    paddingHorizontal: 16,
-  },
-  headerWrapper: {
-    height: 64,
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  title: {
-    flex: 1,
-    color: '#131214',
-    fontSize: 18,
-    fontWeight: '700',
-    textAlign: 'center',
-    paddingRight: 32,
-  },
-  backImage: {
-    width: 32,
-    height: 32,
-  },
-});
 
 const CustomHeader = ({ title }: { title: string }) => {
   const router = useRouter();
@@ -59,3 +35,28 @@ export default function NewLayout() {
     </Stack>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+  },
+  headerWrapper: {
+    height: 64,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  title: {
+    flex: 1,
+    color: '#131214',
+    fontSize: 18,
+    fontWeight: '700',
+    textAlign: 'center',
+    paddingRight: 32,
+  },
+  backImage: {
+    width: 32,
+    height: 32,
+  },
+});
