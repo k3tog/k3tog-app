@@ -4,5 +4,6 @@ import collectionIcon from '../assets/icons/collection.png';
 import exploreIcon from '../assets/icons/explore.png';
 import profileIcon from '../assets/icons/profile.png';
 import calendarIcon from '../assets/icons/calendar.png';
+import gaugeIcon from '../assets/icons/gauge.png';
 
-export default { newIcon, dashboardIcon, collectionIcon, exploreIcon, profileIcon, calendarIcon };
+export default { newIcon, dashboardIcon, collectionIcon, exploreIcon, profileIcon, calendarIcon, gaugeIcon };

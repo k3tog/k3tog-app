@@ -1,4 +1,4 @@
-// import capitalizeFirstLetter from '@/utills/capitalize-first-letter';
+import capitalizeFirstLetter from '@/utills/capitalize-first-letter';
 import { Stack, useRouter } from 'expo-router';
 import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -38,7 +38,7 @@ const CustomHeader = ({ title }: { title?: string }) => {
         <TouchableOpacity onPress={() => router.back()}>
           <Image source={backImage} style={styles.backImage} />
         </TouchableOpacity>
-        {/* <Text style={styles.title}>{`${capitalizeFirstLetter(title ?? '')}`}</Text> */}
+        <Text style={styles.title}>{`${capitalizeFirstLetter(title ?? '')}`}</Text>
       </View>
     </View>
   );
