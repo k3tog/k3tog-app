@@ -6,7 +6,6 @@ export default function NewProject() {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>NewYarn</Text>
-        <Text style={{ fontFamily: 'ExtraBold_800' }}>NewYarn</Text>
       </View>
     </SafeAreaView>
   );

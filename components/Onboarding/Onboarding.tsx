@@ -46,7 +46,7 @@ const Onboarding = () => {
         </View>
       </View>
       <View style={styles.ButtonContainer}>
-        <Button type={'primary'} onPress={() => {}}>
+        <Button type={'primary'} onPress={() => { }}>
           Get started
         </Button>
         <Button
@@ -61,6 +61,7 @@ const Onboarding = () => {
     </View>
   );
 };
+
 export default Onboarding;
 
 const styles = StyleSheet.create({
