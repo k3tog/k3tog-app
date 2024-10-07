@@ -5,7 +5,7 @@ type PostUserPatternV1BodyType = {
   pattern_document?: string;
 };
 
-type PatternDocumentType = {
+type PatternDocumentV1Type = {
   id: number;
   document_id: string;
   document_key: string;
@@ -13,12 +13,12 @@ type PatternDocumentType = {
   created_ts: number;
 };
 
-type PostUserPatternV1ResponseData = {
+type UserPatternV1ResponseData = {
   id: number;
   name: string;
   author: string;
   description: string;
-  pattern_document: PatternDocumentType[];
+  pattern_document: PatternDocumentV1Type[];
   created_at: number;
   updated_at: number;
 };
