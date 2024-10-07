@@ -36,6 +36,7 @@ export const getUserYarnsV1Api = async ({ username }: { username: string }) => {
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -55,6 +56,7 @@ export const getUserYarnV1Api = async ({ username, yarnId }: { username: string;
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**

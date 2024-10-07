@@ -23,6 +23,7 @@ export const createUserNeedleV1Api = async ({
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -41,6 +42,7 @@ export const getUserNeedlesV1Api = async ({ username }: { username: string }) =>
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -60,6 +62,7 @@ export const getUserNeedleV1Api = async ({ username, needleId }: { username: str
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -79,4 +82,5 @@ export const deleteUserNeedleV1Api = async ({ username, needleId }: { username: 
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };

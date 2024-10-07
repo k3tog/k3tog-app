@@ -17,6 +17,7 @@ export const createUserGaugeV1Api = async ({ username, body }: { username: strin
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -35,6 +36,7 @@ export const getUserGaugesV1Api = async ({ username }: { username: string }) => 
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -54,6 +56,7 @@ export const getUserGaugeV1Api = async ({ username, gauge_id }: { username: stri
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -73,4 +76,5 @@ export const deleteUserGaugeV1Api = async ({ username, gauge_id }: { username: s
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };

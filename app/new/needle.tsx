@@ -4,38 +4,64 @@ import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Select from '@/components/Select';
-
-type FormData = {
-  needleName: string;
-  size: string;
-  notes: string;
-  // photos:[]
-};
-
-const styles = StyleSheet.create({
-  login_button_area: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-  },
-  dropdown: {
-    zIndex: 1000, // zIndex 조정
-  },
-});
+import { useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { createUserNeedleV1Api } from '@/apis/user-needles';
 
 export default function NewNeedle() {
+  const router = useRouter();
   const { bottom } = useSafeAreaInsets();
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       needleName: '',
       size: '',
       notes: '',
-      // photos:[]
+      // photos_ids: []
     },
   });
-  const onSubmit = (data: FormData) => console.log(data);
+
+  const [isSaveEnabled, setIsSaveEnabled] = useState(false);
+
+  const needleNameValue = watch('needleName');
+
+  useEffect(() => {
+    setIsSaveEnabled(needleNameValue.length > 0);
+  }, [needleNameValue]);
+
+  const needleSizeOptions = [
+    { label: 'US 0 (2.0 mm)', value: 2.0 },
+    { label: 'US 1 (2.25 mm)', value: 2.25 },
+    { label: 'US 2 (2.75 mm)', value: 2.75 },
+    { label: 'US 3 (3.25 mm)', value: 3.25 },
+    { label: 'US 4 (3.5 mm)', value: 3.5 },
+    { label: 'US 5 (3.75 mm)', value: 3.75 },
+    { label: 'US 6 (4.0 mm)', value: 4.0 },
+    { label: 'US 7 (4.5 mm)', value: 4.5 },
+    { label: 'US 8 (5.0 mm)', value: 5.0 },
+    { label: 'US 9 (5.5 mm)', value: 5.5 },
+    { label: 'US 10 (6.0 mm)', value: 6.0 },
+  ];
+
+  const handleCreateNewUserNeedle = async (data: { needleName: string; size: string; notes: string }) => {
+    try {
+      const result = await createUserNeedleV1Api({
+        // TODO(irene/juno): this is temporary username - handle dynamically once authentication is done
+        username: 'knitwithcode', // Assuming 'knitwithcode' is the username to use for the API call
+        body: {
+          name: data.needleName,
+          size: data.size,
+          note: data.notes,
+        },
+      });
+      if (result.error) {
+        console.error('Failed to create needle:', result.error);
+      } else {
+        console.log('Needle created successfully:', result.data);
+      }
+    } catch (error) {
+      console.error('Error creating needle:', error);
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -69,21 +95,12 @@ export default function NewNeedle() {
             <View style={{ flex: 1, zIndex: 100 }}>
               <Controller
                 control={control}
+                rules={{
+                  required: false,
+                }}
                 name="size"
                 render={({ field: { onChange, value } }) => (
-                  <Select
-                    onChange={onChange}
-                    value={value}
-                    items={[
-                      { label: '2.0 mm', value: '2.0' },
-                      { label: '2.5 mm', value: '2.5' },
-                      { label: '3.0 mm', value: '3.0' },
-                      { label: '3.5 mm', value: '3.5' },
-                      { label: '4.0 mm', value: '4.0' },
-                    ]}
-                    placeholder="Size"
-                    title="Size"
-                  />
+                  <Select onChange={onChange} value={value} items={needleSizeOptions} placeholder="Size" title="Size" />
                 )}
               />
             </View>
@@ -91,7 +108,7 @@ export default function NewNeedle() {
               <Controller
                 control={control}
                 rules={{
-                  required: true,
+                  required: false,
                 }}
                 name="notes"
                 render={({ field: { onChange, value } }) => (
@@ -111,11 +128,31 @@ export default function NewNeedle() {
         </ScrollView>
         <View style={styles.login_button_area}>
           <View style={{ flex: 1, flexDirection: 'row', gap: 16 }}>
-            <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={handleSubmit(onSubmit)} />
-            <Button title="Save" type={'primary'} style={{ flex: 1 }} disabled />
+            <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={() => router.back()} />
+            <Button
+              title="Save"
+              type={'primary'}
+              style={{ flex: 1 }}
+              onPress={handleSubmit(handleCreateNewUserNeedle)}
+              disabled={!isSaveEnabled}
+            />
           </View>
         </View>
       </View>
     </KeyboardAvoidingView>
   );
 }
+
+
+const styles = StyleSheet.create({
+  login_button_area: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
+  dropdown: {
+    zIndex: 1000, // zIndex 조정
+  },
+});

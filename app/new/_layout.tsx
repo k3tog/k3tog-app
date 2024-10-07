@@ -3,7 +3,6 @@ import { Stack, useRouter } from 'expo-router';
 import { StyleSheet, TouchableOpacity, Text, View, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-
 const CustomHeader = ({ title }: { title: string }) => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();

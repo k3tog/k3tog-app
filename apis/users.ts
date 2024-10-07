@@ -16,6 +16,7 @@ export const createUserV1Api = async ({ username, body }: { username: string; bo
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -33,6 +34,7 @@ export const getUsersV1Api = async () => {
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -51,6 +53,7 @@ export const getUserV1Api = async ({ username }: { username: string }) => {
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
 
 /**
@@ -70,4 +73,5 @@ export const putUserV1Api = async ({ username, body }: { username: string; body:
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };

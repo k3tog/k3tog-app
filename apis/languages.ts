@@ -8,4 +8,5 @@ export const getLanguagesApi = async () => {
   } catch (error) {
     result.error = error as ErrorResponse;
   }
+  return result;
 };
