@@ -23,16 +23,4 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
   },
-  imageBox: {
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  paginatorBox: {
-    height: 50,
-    paddingTop: 26,
-    paddingBottom: 16,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
 });
