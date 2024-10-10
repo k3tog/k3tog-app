@@ -1,6 +1,31 @@
 import { Href, useRouter } from 'expo-router';
 import { Text, View, Image, StyleSheet, ImageSourcePropType, TouchableOpacity } from 'react-native';
 
+const NewCard = ({
+  title,
+  content,
+  source,
+  path,
+}: {
+  title: string;
+  content: string;
+  source: ImageSourcePropType;
+  path: Href<string>;
+}) => {
+  const router = useRouter();
+  return (
+    <TouchableOpacity style={styles.card} onPress={() => router.push(path)}>
+      <Image source={source} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.cardTitle}>{title}</Text>
+        <Text style={styles.cardContent}>{content}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+export default NewCard;
+
 const styles = StyleSheet.create({
   card: {
     height: '100%',
@@ -41,28 +66,3 @@ const styles = StyleSheet.create({
     gap: 8,
   },
 });
-
-const NewCard = ({
-  title,
-  content,
-  source,
-  path,
-}: {
-  title: string;
-  content: string;
-  source: ImageSourcePropType;
-  path: Href<string>;
-}) => {
-  const router = useRouter();
-  return (
-    <TouchableOpacity style={styles.card} onPress={() => router.push(path)}>
-      <Image source={source} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Text style={styles.cardContent}>{content}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
-
-export default NewCard;

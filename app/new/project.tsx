@@ -19,6 +19,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import BottomSheet from '@/components/Modal/BottomSheet';
+import RadioButtonList from '@/components/RadioButton/RadioButtonList';
 
 interface IconTextButtonProps {
   icon: ImageSourcePropType;
@@ -28,11 +29,19 @@ interface IconTextButtonProps {
   textStyle?: TextStyle;
 }
 
-const IconTextButton: React.FC<IconTextButtonProps> = ({ icon, text, onPress, buttonStyle, textStyle }) => {
+const IconTextButton = ({ icon, text, onPress, buttonStyle, textStyle }: IconTextButtonProps) => {
   return (
     <TouchableOpacity style={[styles.iconTextButton, buttonStyle]} onPress={onPress}>
-      <Image source={icon} tintColor="#898D8F" style={styles.icon} />
-      <Text style={[styles.buttonText, textStyle]}>{text}</Text>
+      <Image source={icon} style={styles.icon} />
+      <Text
+        style={[
+          styles.buttonText,
+          textStyle,
+          { fontFamily: 'Plus Jakarta Sans', fontSize: 14, lineHeight: 21, fontWeight: 400 },
+        ]}
+      >
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -72,6 +81,23 @@ const NewProject = () => {
     endDateRef.current?.present();
   }, []);
 
+  const statusOptions = [
+    { value: 'Not Started', icon: icons.squareIcon, label: 'Not Started', description: 'Planned, but haven’t started' },
+    {
+      value: 'Work in Progress',
+      icon: icons.repeatIcon,
+      label: 'Work In Progress',
+      description: 'Cast-on, working on it!',
+    },
+    { value: 'Finished', icon: icons.checkSquareIcon, label: 'Finished', description: 'I’ve got F.O.!' },
+  ];
+
+  const [statusValue, setStatusValue] = useState('');
+
+  const handleStatusChange = (value: string) => {
+    setStatusValue(value);
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -85,7 +111,7 @@ const NewProject = () => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <TextInput
-              placeholder="Enter Project Title"
+              placeholder="Title"
               placeholderTextColor="#898D8F"
               style={styles.titleInput}
               value={value}
@@ -96,7 +122,16 @@ const NewProject = () => {
         />
         <View style={styles.spacer} />
         <View style={styles.buttonContainer}>
-          <IconTextButton icon={icons.statusIcon} text="Choose Status" onPress={handleStatusModalPress} />
+          {statusValue ? (
+            <IconTextButton
+              icon={icons.checkCircleColoredIcon}
+              text={statusValue}
+              onPress={handleStatusModalPress}
+              textStyle={{ color: '#131214' }}
+            />
+          ) : (
+            <IconTextButton icon={icons.checkCircleIcon} text="Choose Status" onPress={handleStatusModalPress} />
+          )}
           <IconTextButton icon={icons.calendarStartIcon} text="Choose Start Date" onPress={handleStartDateModalPress} />
           <IconTextButton icon={icons.calendarEndIcon} text="Choose End Date" onPress={handleEndDateModalPress} />
         </View>
@@ -109,7 +144,7 @@ const NewProject = () => {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <TextInput
-              placeholder="Enter Project Note"
+              placeholder="Write something..."
               placeholderTextColor="#898D8F"
               multiline
               style={styles.noteInput}
@@ -125,13 +160,36 @@ const NewProject = () => {
 
         <View style={styles.buttonArea}>
           <View style={styles.buttonFlex}>
-            <Button title="Cancel" type="cancel" style={styles.flexButton} onPress={() => router.back()} />
-            <Button title="Save" type="primary" style={styles.flexButton} disabled={!isSaveEnabled} />
+            <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={() => router.back()} />
+            <Button
+              title="Save"
+              type={'primary'}
+              style={{ flex: 1 }}
+              // onPress={handleSubmit(handleCreateNewUserNeedle)}
+              disabled={!isSaveEnabled}
+            />
           </View>
         </View>
       </View>
-      <BottomSheet ref={statusRef}>
-        <Text>Awesome 🎉</Text>
+      <BottomSheet ref={statusRef} title="Choose Status">
+        <View style={styles.statusContainer}>
+          <RadioButtonList options={statusOptions} selectedValue={statusValue} onChange={handleStatusChange} />
+          <View style={{ flex: 1, flexDirection: 'row', gap: 16, paddingVertical: 16 }}>
+            <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={() => statusRef.current?.dismiss()} />
+            <Button
+              title="Add"
+              type={'primary'}
+              style={{ flex: 1 }}
+              onPress={() => {
+                if (statusValue) {
+                  handleStatusChange(statusValue);
+                  statusRef.current?.dismiss();
+                }
+              }}
+              disabled={!statusValue}
+            />
+          </View>
+        </View>
       </BottomSheet>
       <BottomSheet ref={startDateRef}>
         <Text>EndDateModal 🎉</Text>
@@ -208,6 +266,11 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     alignItems: 'center',
+  },
+  statusContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    paddingHorizontal: 16,
   },
 });
 
