@@ -5,23 +5,10 @@ import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from 're
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Select from '@/components/Select';
 import Label from '@/components/Input/Label';
-
-type FormData = {
-  yarnName: string;
-  brandName: string;
-  color: string;
-  needleRange: {
-    from: number;
-    to: number;
-  };
-  hookRange: {
-    from: number;
-    to: number;
-  };
-  weight: number;
-  notes: string;
-  // photos:[]
-};
+import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { createUserYarnV1Api } from '@/apis/user-yarns';
 
 const needleSizeOptions = [
   { label: 'US 0 (2.0 mm)', value: 2.0 },
@@ -53,22 +40,10 @@ const hookSizeOptions = [
   { label: 'N-15 (10.0 mm)', value: 10.0 },
 ];
 
-const styles = StyleSheet.create({
-  login_button_area: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-  },
-  dropdown: {
-    zIndex: 1000, // zIndex 조정
-  },
-});
-
 export default function NewYarn() {
+  const router = useRouter();
   const { bottom } = useSafeAreaInsets();
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       yarnName: '',
       brandName: '',
@@ -83,10 +58,51 @@ export default function NewYarn() {
       },
       weight: 0,
       notes: '',
-      // photos:[]
+      // photo_ids:[]
     },
   });
-  const onSubmit = (data: FormData) => console.log(data);
+
+  const [isSaveEnabled, setIsSaveEnabled] = useState(false);
+
+  const yarnNameValue = watch('yarnName');
+
+  useEffect(() => {
+    setIsSaveEnabled(yarnNameValue.length > 0);
+  }, [yarnNameValue]);
+
+  const HandleCreateNewUserYarn = async (data: {
+    yarnName: string;
+    brandName: string;
+    color: string;
+    needleRange: { from: number; to: number };
+    hookRange: { from: number; to: number };
+    weight: number;
+    notes: string;
+  }) => {
+    try {
+      const result = await createUserYarnV1Api({
+        username: 'knitwithcode', // TODO(irene/juno): this is temporary username - handle dynamically once authentication is done
+        body: {
+          yarn_name: data.yarnName,
+          brand_name: data.brandName,
+          color: data.color,
+          needle_range_from: data.needleRange.from,
+          needle_range_to: data.needleRange.to,
+          hook_range_from: data.hookRange.from,
+          hook_range_to: data.hookRange.to,
+          weight: data.weight.toString(),
+          note: data.notes,
+        },
+      });
+      if (result.error) {
+        console.error('Failed to create yarn:', result.error);
+      } else {
+        console.log('Yarn created successfully:', result.data);
+      }
+    } catch (error) {
+      console.error('Error creating yarn:', error);
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -114,7 +130,7 @@ export default function NewYarn() {
             <Controller
               control={control}
               rules={{
-                required: true,
+                required: false,
               }}
               render={({ field: { onChange, value } }) => (
                 <Input title="Brand Name" placeholder="Enter brand name" onChangeText={onChange} value={value} />
@@ -125,7 +141,7 @@ export default function NewYarn() {
             <Controller
               control={control}
               rules={{
-                required: true,
+                required: false,
               }}
               render={({ field: { onChange, value } }) => (
                 <Input title="Color" placeholder="Enter color name" onChangeText={onChange} value={value} />
@@ -184,7 +200,7 @@ export default function NewYarn() {
             <Controller
               control={control}
               rules={{
-                required: true,
+                required: false,
               }}
               render={({ field: { onChange, value } }) => (
                 <Input
@@ -201,7 +217,7 @@ export default function NewYarn() {
               <Controller
                 control={control}
                 rules={{
-                  required: true,
+                  required: false,
                 }}
                 name="notes"
                 render={({ field: { onChange, value } }) => (
@@ -219,13 +235,32 @@ export default function NewYarn() {
             </View>
           </View>
         </ScrollView>
-        <View style={styles.login_button_area}>
+        <View style={styles.ButtonArea}>
           <View style={{ flex: 1, flexDirection: 'row', gap: 16 }}>
-            <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={handleSubmit(onSubmit)} />
-            <Button title="Save" type={'primary'} style={{ flex: 1 }} disabled />
+            <Button title="Cancel" type={'cancel'} style={{ flex: 1 }} onPress={() => router.back()} />
+            <Button
+              title="Save"
+              type={'primary'}
+              style={{ flex: 1 }}
+              onPress={handleSubmit(HandleCreateNewUserYarn)}
+              disabled={!isSaveEnabled}
+            />
           </View>
         </View>
       </View>
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  ButtonArea: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
+  dropdown: {
+    zIndex: 1000, // zIndex 조정
+  },
+});

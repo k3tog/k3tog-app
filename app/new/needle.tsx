@@ -8,6 +8,20 @@ import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { createUserNeedleV1Api } from '@/apis/user-needles';
 
+const needleSizeOptions = [
+  { label: 'US 0 (2.0 mm)', value: 2.0 },
+  { label: 'US 1 (2.25 mm)', value: 2.25 },
+  { label: 'US 2 (2.75 mm)', value: 2.75 },
+  { label: 'US 3 (3.25 mm)', value: 3.25 },
+  { label: 'US 4 (3.5 mm)', value: 3.5 },
+  { label: 'US 5 (3.75 mm)', value: 3.75 },
+  { label: 'US 6 (4.0 mm)', value: 4.0 },
+  { label: 'US 7 (4.5 mm)', value: 4.5 },
+  { label: 'US 8 (5.0 mm)', value: 5.0 },
+  { label: 'US 9 (5.5 mm)', value: 5.5 },
+  { label: 'US 10 (6.0 mm)', value: 6.0 },
+];
+
 export default function NewNeedle() {
   const router = useRouter();
   const { bottom } = useSafeAreaInsets();
@@ -27,20 +41,6 @@ export default function NewNeedle() {
   useEffect(() => {
     setIsSaveEnabled(needleNameValue.length > 0);
   }, [needleNameValue]);
-
-  const needleSizeOptions = [
-    { label: 'US 0 (2.0 mm)', value: 2.0 },
-    { label: 'US 1 (2.25 mm)', value: 2.25 },
-    { label: 'US 2 (2.75 mm)', value: 2.75 },
-    { label: 'US 3 (3.25 mm)', value: 3.25 },
-    { label: 'US 4 (3.5 mm)', value: 3.5 },
-    { label: 'US 5 (3.75 mm)', value: 3.75 },
-    { label: 'US 6 (4.0 mm)', value: 4.0 },
-    { label: 'US 7 (4.5 mm)', value: 4.5 },
-    { label: 'US 8 (5.0 mm)', value: 5.0 },
-    { label: 'US 9 (5.5 mm)', value: 5.5 },
-    { label: 'US 10 (6.0 mm)', value: 6.0 },
-  ];
 
   const handleCreateNewUserNeedle = async (data: { needleName: string; size: string; notes: string }) => {
     try {
