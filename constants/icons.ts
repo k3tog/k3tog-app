@@ -4,10 +4,10 @@ import collectionIcon from '../assets/icons/collection.png';
 import exploreIcon from '../assets/icons/explore.png';
 import profileIcon from '../assets/icons/profile.png';
 import calendarIcon from '../assets/icons/calendar.png';
-// import gaugeIcon from '../assets/icons/gauge.png';
 import statusIcon from '../assets/icons/status.png';
 import calendarStartIcon from '../assets/icons/calendar-start.png';
 import calendarEndIcon from '../assets/icons/calendar-end.png';
+import gaugeIcon from '../assets/icons/gauge.png';
 
 export default {
   newIcon,
@@ -16,7 +16,7 @@ export default {
   exploreIcon,
   profileIcon,
   calendarIcon,
-  // gaugeIcon,
+  gaugeIcon,
   statusIcon,
   calendarStartIcon,
   calendarEndIcon,

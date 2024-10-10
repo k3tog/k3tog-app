@@ -1,12 +1,14 @@
 import icons from '@/constants/icons';
+import { useRouter } from 'expo-router';
 import { TouchableOpacity, Text, View, StyleSheet, ScrollView, Image } from 'react-native';
+const imageUrl =
+  'https://s3-alpha-sig.figma.com/img/af4b/a1fa/c41586b8704d7d05635dccb878aeda74?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HxQ2CkCxA9JesmHjuY8qKedqySEEa7UxF2jq2JkpN0OmnFhuARC9ltM9uGEb4r-CB4LLWbOuOeJdleV951ExKcg9e2rd6RjqgPohsndxyw8jApOZpN0fzQbqrDfAXsltPia5~Rtzto044wInYKyOGNMvh6AvtvM~CMKWPV13KoEYiqiHx-H9Q36lQ4hWpU6oYbC4R0y0xMKyeyOD9Qv3L~BGSO5HhR4PH1pvrYjFGLoXrOVT2vq63Xnxd0XNli9isn~~DqE2LKkfpne9j34lVETBdgY~MdfcpLPUEzcIGryhp7cUbPu2XdcKqIKsfOU5ftYx9J~Qon5RCmtHQ1IkFw__';
 
 const ProjectCard = () => {
-  const imageUrl =
-    'https://s3-alpha-sig.figma.com/img/af4b/a1fa/c41586b8704d7d05635dccb878aeda74?Expires=1728864000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HxQ2CkCxA9JesmHjuY8qKedqySEEa7UxF2jq2JkpN0OmnFhuARC9ltM9uGEb4r-CB4LLWbOuOeJdleV951ExKcg9e2rd6RjqgPohsndxyw8jApOZpN0fzQbqrDfAXsltPia5~Rtzto044wInYKyOGNMvh6AvtvM~CMKWPV13KoEYiqiHx-H9Q36lQ4hWpU6oYbC4R0y0xMKyeyOD9Qv3L~BGSO5HhR4PH1pvrYjFGLoXrOVT2vq63Xnxd0XNli9isn~~DqE2LKkfpne9j34lVETBdgY~MdfcpLPUEzcIGryhp7cUbPu2XdcKqIKsfOU5ftYx9J~Qon5RCmtHQ1IkFw__';
+  const router = useRouter();
 
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => router.push('/collection/project')}>
       <Image source={{ uri: imageUrl }} style={styles.image} resizeMode="cover" />
       <View style={styles.content}>
         <Text style={styles.status}>Not Started</Text>
