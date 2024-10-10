@@ -57,6 +57,7 @@ export default function NewNeedle() {
         console.error('Failed to create needle:', result.error);
       } else {
         console.log('Needle created successfully:', result.data);
+        router.back();
       }
     } catch (error) {
       console.error('Error creating needle:', error);
@@ -142,7 +143,6 @@ export default function NewNeedle() {
     </KeyboardAvoidingView>
   );
 }
-
 
 const styles = StyleSheet.create({
   login_button_area: {
