@@ -10,7 +10,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { createUserYarnV1Api } from '@/apis/user-yarns';
 
-
 const needleSizeOptions = [
   { label: 'US 0 (2.0 mm)', value: 2.0 },
   { label: 'US 1 (2.25 mm)', value: 2.25 },
@@ -40,7 +39,6 @@ const hookSizeOptions = [
   { label: 'M-13 (9.0 mm)', value: 9.0 },
   { label: 'N-15 (10.0 mm)', value: 10.0 },
 ];
-
 
 export default function NewYarn() {
   const router = useRouter();
@@ -132,7 +130,7 @@ export default function NewYarn() {
             <Controller
               control={control}
               rules={{
-                required: true,
+                required: false,
               }}
               render={({ field: { onChange, value } }) => (
                 <Input title="Brand Name" placeholder="Enter brand name" onChangeText={onChange} value={value} />
@@ -143,7 +141,7 @@ export default function NewYarn() {
             <Controller
               control={control}
               rules={{
-                required: true,
+                required: false,
               }}
               render={({ field: { onChange, value } }) => (
                 <Input title="Color" placeholder="Enter color name" onChangeText={onChange} value={value} />
@@ -202,7 +200,7 @@ export default function NewYarn() {
             <Controller
               control={control}
               rules={{
-                required: true,
+                required: false,
               }}
               render={({ field: { onChange, value } }) => (
                 <Input
@@ -219,7 +217,7 @@ export default function NewYarn() {
               <Controller
                 control={control}
                 rules={{
-                  required: true,
+                  required: false,
                 }}
                 name="notes"
                 render={({ field: { onChange, value } }) => (
