@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/button';
 import icons from '@/constants/icons';
 import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -19,8 +19,8 @@ import {
 } from 'react-native';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import BottomSheet from '@/components/modal/modal.bottom-sheet';
-import RadioButtonList from '@/components/RadioButton/RadioButtonList';
 import TopbarCenterAligned from '@/components/topbar/topbar.center-aligned';
+import RadioButtonList from '@/components/radio-button/ratio-button.list';
 
 interface IconTextButtonProps {
   icon: ImageSourcePropType;

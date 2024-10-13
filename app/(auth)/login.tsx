@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/button';
 import Input from '@/components/Input';
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, Text, View } from 'react-native';

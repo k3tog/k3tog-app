@@ -14,3 +14,12 @@ type TNewListCardProps = {
   source: ImageSourcePropType;
   path: Href<string>;
 };
+
+type TListCardProps = {
+  thumbnail: ImageSourcePropType;
+  status: string;
+  title: string;
+  caption?: string;
+  date?: string;
+  onPress?: () => void;
+};

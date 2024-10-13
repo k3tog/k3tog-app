@@ -2,7 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker'; // DropDownPicker 임포트
 import { useState } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
-import Label from '../Input/Label';
+import Label from '../Input/label';
 
 type itemType = {
   label: string;

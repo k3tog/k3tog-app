@@ -1,9 +1,9 @@
-import Button from '@/components/Button';
+import Button from '@/components/button';
 import Input from '@/components/Input';
 import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
-import Select from '@/components/Select';
-import Label from '@/components/Input/Label';
+import Select from '@/components/select';
+import Label from '@/components/Input/label';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { createUserGaugeV1Api } from '@/apis/user-gauges';

@@ -1,5 +1,5 @@
 import { createUserPatternV1Api } from '@/apis/user-patterns';
-import Button from '@/components/Button';
+import Button from '@/components/button';
 import Input from '@/components/Input';
 import TopbarCenterAligned from '@/components/topbar/topbar.center-aligned';
 import icons from '@/constants/icons';

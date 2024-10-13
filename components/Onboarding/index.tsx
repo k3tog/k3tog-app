@@ -2,9 +2,9 @@ import { FlashList } from '@shopify/flash-list';
 import { useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 
-import Button from '../Button';
-import OnboardingSlidesItem from './SlidesItem';
-import OnboardingSlidesPaginator from './SlidesPaginator';
+import Button from '../button';
+import OnboardingSlidesItem from './onboarding.slides-item';
+import OnboardingSlidesPaginator from './onboarding.slides-paginator';
 import { useRouter } from 'expo-router';
 import images from '@/constants/images';
 

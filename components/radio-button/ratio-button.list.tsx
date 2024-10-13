@@ -1,5 +1,5 @@
 import React from 'react';
-import RadioButton from './RadioButton';
+import RadioButton from './radio-button';
 import { ImageSourcePropType, View } from 'react-native';
 
 interface Option {

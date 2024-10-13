@@ -1,10 +1,10 @@
-import Button from '@/components/Button';
+import Button from '@/components/button';
 import Input from '@/components/Input';
 import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Select from '@/components/Select';
-import Label from '@/components/Input/Label';
+import Select from '@/components/select';
+import Label from '@/components/Input/label';
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { useState } from 'react';

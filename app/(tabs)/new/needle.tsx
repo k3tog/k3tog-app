@@ -1,8 +1,8 @@
-import Button from '@/components/Button';
+import Button from '@/components/button';
 import Input from '@/components/Input';
 import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
-import Select from '@/components/Select';
+import Select from '@/components/select';
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { createUserNeedleV1Api } from '@/apis/user-needles';
