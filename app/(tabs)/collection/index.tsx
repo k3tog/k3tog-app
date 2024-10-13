@@ -59,7 +59,7 @@ const Category = ({ category, title, subtitle, image }: CategoryProps) => (
   </View>
 );
 
-export default function Collection() {
+const Collection = () => {
   const [index, setIndex] = useState(0);
 
   return (
@@ -126,7 +126,9 @@ export default function Collection() {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
+
+export default Collection;
 
 const styles = StyleSheet.create({
   image: {
