@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/button';
 import { useRouter } from 'expo-router';
 import { Image, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
@@ -61,7 +61,7 @@ export default function LoginOptions() {
 
         <View style={styles.terms_privacy_area}>
           <Text style={styles.terms_privacy_text}>
-            By continuing, you agree to  our Terms of Service and Privacy Policy.
+            By continuing, you agree to our Terms of Service and Privacy Policy.
           </Text>
         </View>
       </View>

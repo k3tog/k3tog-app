@@ -14,6 +14,10 @@ import squareIcon from '../assets/icons/square.png';
 import repeatIcon from '../assets/icons/repeat.png';
 import radioButtonDefaultIcon from '../assets/icons/radio-button-default.png';
 import radioButtonSelectedIcon from '../assets/icons/radio-button-selected.png';
+import chevronLeftColoredIcon from '../assets/icons/chevron-left-colored.png';
+import pencilIcon from '../assets/icons/pencil.png';
+import bookmarkIcon from '../assets/icons/bookmark.png';
+import trashIcon from '../assets/icons/trash.png';
 
 export default {
   newIcon,
@@ -32,4 +36,8 @@ export default {
   checkSquareIcon,
   radioButtonDefaultIcon,
   radioButtonSelectedIcon,
+  chevronLeftColoredIcon,
+  pencilIcon,
+  bookmarkIcon,
+  trashIcon,
 };
