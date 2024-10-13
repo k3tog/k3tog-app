@@ -1,6 +1,7 @@
 import icons from '@/constants/icons';
 import { Tabs, usePathname } from 'expo-router';
-import { ImageSourcePropType, View, Image } from 'react-native';
+import { ImageSourcePropType, View, Image, Text } from 'react-native';
+
 const withOutTabsPaths = ['/new/stackTest'];
 
 type TabIconProps = {
@@ -44,6 +45,7 @@ export default function TabLayout() {
         options={{
           title: 'Dashboard',
           tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.dashboardIcon} color={color} focused={focused} />,
+          tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>Dashboard</Text>,
         }}
       />
 
@@ -52,6 +54,7 @@ export default function TabLayout() {
         options={{
           title: 'Collection',
           tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.collectionIcon} color={color} focused={focused} />,
+          tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>Collection</Text>,
         }}
       />
 
@@ -60,6 +63,7 @@ export default function TabLayout() {
         options={{
           title: 'New',
           tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.newIcon} color={color} focused={focused} />,
+          tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>New</Text>,
         }}
       />
 
@@ -68,6 +72,7 @@ export default function TabLayout() {
         options={{
           title: 'Explore',
           tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.exploreIcon} color={color} focused={focused} />,
+          tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>Explore</Text>,
         }}
       />
       <Tabs.Screen
@@ -75,6 +80,7 @@ export default function TabLayout() {
         options={{
           title: 'My Profile',
           tabBarIcon: ({ color, focused }) => <TabIcon icon={icons.profileIcon} color={color} focused={focused} />,
+          tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>My Profile</Text>,
         }}
       />
     </Tabs>
