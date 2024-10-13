@@ -25,7 +25,6 @@ const MyProjectDetail = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* TODO: not working for some reason  */}
       <TopbarCenterAligned title="Project" leftIcon={icons.chevronLeftColoredIcon} />
       <ScrollView contentContainerStyle={styles.contentContainer}>
         {/* project info */}

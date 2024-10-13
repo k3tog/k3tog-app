@@ -17,7 +17,6 @@ const ListCard = ({ thumbnail, status, title, caption, date, onPress }: TListCar
 
 export default ListCard;
 
-
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
@@ -51,7 +50,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
     lineHeight: 16.8,
-
   },
   caption: {
     color: '#6E7375',
