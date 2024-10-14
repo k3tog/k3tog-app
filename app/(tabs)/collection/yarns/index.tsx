@@ -38,8 +38,8 @@ const MyYarns = () => {
               key={yarn.id}
               thumbnail={images.placeholderImage64}
               status={yarn?.brand_name ?? 'Unknown'}
-              title={yarn.yarn_name}
-              caption={`Yello - US 8 - 10`}
+              title={yarn?.yarn_name}
+              caption={`${yarn?.color}`}
               date={`2h ago`}
               onPress={() => router.push(`/collection/yarns/${yarn.id}`)}
             />

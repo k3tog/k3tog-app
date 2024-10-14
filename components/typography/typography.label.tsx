@@ -1,19 +1,19 @@
 import { StyleSheet, Text } from 'react-native';
 
-const TypographyLabelLarge = ({ text, color }: TTypographyProps) => {
-  return <Text style={[styles.large, { color }]}>{text}</Text>;
+const TypographyLabelLarge = ({ text, color, style }: TTypographyProps) => {
+  return <Text style={[styles.large, { color }, style]}>{text}</Text>;
 };
 
-const TypographyLabelMedium = ({ text, color }: TTypographyProps) => {
-  return <Text style={[styles.medium, { color }]}>{text}</Text>;
+const TypographyLabelMedium = ({ text, color, style }: TTypographyProps) => {
+  return <Text style={[styles.medium, { color }, style]}>{text}</Text>;
 };
 
-const TypographyLabelSmall = ({ text, color }: TTypographyProps) => {
-  return <Text style={[styles.small, { color }]}>{text}</Text>;
+const TypographyLabelSmall = ({ text, color, style }: TTypographyProps) => {
+  return <Text style={[styles.small, { color }, style]}>{text}</Text>;
 };
 
-const TypographyLabelXSmall = ({ text, color }: TTypographyProps) => {
-  return <Text style={[styles.xsmall, { color }]}>{text}</Text>;
+const TypographyLabelXSmall = ({ text, color, style }: TTypographyProps) => {
+  return <Text style={[styles.xsmall, { color }, style]}>{text}</Text>;
 };
 
 export { TypographyLabelLarge, TypographyLabelMedium, TypographyLabelSmall, TypographyLabelXSmall };
@@ -32,21 +32,17 @@ const styles = StyleSheet.create({
   large: {
     ...base.base,
     fontSize: 18,
-    lineHeight: 18,
   },
   medium: {
     ...base.base,
     fontSize: 16,
-    lineHeight: 16,
   },
   small: {
     ...base.base,
     fontSize: 14,
-    lineHeight: 14,
   },
   xsmall: {
     ...base.base,
     fontSize: 12,
-    lineHeight: 12,
   },
 });
