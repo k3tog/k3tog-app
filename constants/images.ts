@@ -15,6 +15,7 @@ import onboarding4 from '../assets/images/onboarding/onboarding_4.png';
 import placeholderImage100 from '../assets/images/placeholder/placeholder100.png';
 import placeholderImage361 from '../assets/images/placeholder/placeholder361.png';
 import placeholderImage64 from '../assets/images/placeholder/placeholder64.png';
+import placeholderImage320 from '../assets/images/placeholder/placeholder320.png';
 
 export default {
   collectionNeedles,
@@ -34,4 +35,5 @@ export default {
   placeholderImage100,
   placeholderImage361,
   placeholderImage64,
+  placeholderImage320,
 };

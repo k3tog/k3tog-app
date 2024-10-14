@@ -1,13 +1,30 @@
 import { getUserNeedleV1Api } from '@/apis/user-needles';
 import Divider from '@/components/divider/divider';
+import MediumImageSlider from '@/components/slider/slider.images-large';
 import TopbarCenterAligned from '@/components/topbar/topbar.center-aligned';
 import { TypographyBodySmall } from '@/components/typography/typography.body';
 import { TypographyHeading2 } from '@/components/typography/typography.heading';
 import { TypographyLabelMedium, TypographyLabelSmall } from '@/components/typography/typography.label';
 import icons from '@/constants/icons';
+import images from '@/constants/images';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Image, View } from 'react-native';
+
+const IMAGES: TImageSliderProps[] = [
+  {
+    id: '1',
+    image: images.placeholderImage320,
+  },
+  {
+    id: '2',
+    image: images.placeholderImage320,
+  },
+  {
+    id: '3',
+    image: images.placeholderImage320,
+  },
+];
 
 const MyNeedleDetail = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -48,6 +65,7 @@ const MyNeedleDetail = () => {
             </View>
           )}
         </View>
+        <MediumImageSlider images={IMAGES} />
       </ScrollView>
     </SafeAreaView>
   );
