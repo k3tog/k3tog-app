@@ -1,9 +1,13 @@
 import { getUserNeedleV1Api } from '@/apis/user-needles';
+import Divider from '@/components/divider/divider';
 import TopbarCenterAligned from '@/components/topbar/topbar.center-aligned';
+import { TypographyBodySmall } from '@/components/typography/typography.body';
+import { TypographyHeading2 } from '@/components/typography/typography.heading';
+import { TypographyLabelMedium, TypographyLabelSmall } from '@/components/typography/typography.label';
 import icons from '@/constants/icons';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Image, View } from 'react-native';
 
 const MyNeedleDetail = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -24,10 +28,27 @@ const MyNeedleDetail = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopbarCenterAligned title="Pattern" leftIcon={icons.chevronLeftColoredIcon} />
-      <View>
-        <Text>{needle?.name}</Text>
-      </View>
+      <TopbarCenterAligned title="Needle" leftIcon={icons.chevronLeftColoredIcon} />
+      <ScrollView>
+        <View style={styles.infoContainer}>
+          <TypographyHeading2 text={needle?.name ?? 'Needle'} />
+          <View style={styles.infoSubText}>
+            <TypographyLabelSmall text={`${needle?.size}`} color="#6E7375" />
+            <View style={styles.menuIcons}>
+              <Image style={styles.icon} source={icons.pencilIcon} />
+              <Image style={styles.icon} source={icons.bookmarkIcon} />
+              <Image style={styles.icon} source={icons.trashIcon} />
+            </View>
+          </View>
+          <Divider />
+          {needle?.note && (
+            <View style={styles.notes}>
+              <TypographyLabelMedium text={`Notes`} style={{ fontWeight: 700 }} />
+              <TypographyBodySmall text={needle?.note} color="#6E7375" />
+            </View>
+          )}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -38,5 +59,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+  },
+  infoContainer: {
+    display: 'flex',
+    gap: 16,
+    alignSelf: 'stretch',
+    paddingHorizontal: 16,
+    paddingVertical: 24,
+  },
+  infoSubText: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  menuIcons: {
+    flexDirection: 'row',
+    gap: 10,
+    justifyContent: 'flex-end',
+  },
+  icon: {
+    width: 24,
+    height: 24,
+  },
+  notes: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 12,
   },
 });

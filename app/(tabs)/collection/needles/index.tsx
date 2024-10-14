@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'column',
     gap: 24,
-    borderWidth: 1,
   },
   emptyStateContainer: {
     flex: 1,
