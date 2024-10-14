@@ -6,7 +6,7 @@ import icons from '@/constants/icons';
 import images from '@/constants/images';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { View, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import { View, SafeAreaView, StyleSheet, ScrollView, Text } from 'react-native';
 
 const STATUS = ['All', 'Not Started', 'WIP', 'Finished'];
 
@@ -36,20 +36,27 @@ const MyProjects = () => {
         ))}
       </View>
       {/* </ScrollView> */}
-      <ScrollView contentContainerStyle={styles.listContainer}>
-        {projects.map((project) => (
-          <ListCardWithStatus
-            key={project.id}
-            thumbnail={images.placeholderImage100}
-            status={project.status ?? 'Not Started'}
-            title={project.title}
-            description={project.note ?? 'No description'}
-            dateFrom={project.co_date ?? 'Unknown'}
-            dateTo={project.fo_date ?? 'Unknown'}
-            onPress={() => router.push(`/collection/projects/${project.id}`)}
-          />
-        ))}
-      </ScrollView>
+      {projects.length === 0 ? (
+        <View style={styles.emptyStateContainer}>
+          <Text style={styles.emptyStateText}>It seems you haven't added any projects.</Text>
+          <Text style={styles.emptyStateText}>Start your collection now!</Text>
+        </View>
+      ) : (
+        <ScrollView contentContainerStyle={styles.listContainer}>
+          {projects.map((project) => (
+            <ListCardWithStatus
+              key={project.id}
+              thumbnail={images.placeholderImage100}
+              status={project.status ?? 'Not Started'}
+              title={project.title}
+              description={project.note ?? 'No description'}
+              dateFrom={project.co_date ?? 'Unknown'}
+              dateTo={project.fo_date ?? 'Unknown'}
+              onPress={() => router.push(`/collection/projects/${project.id}`)}
+            />
+          ))}
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
@@ -73,5 +80,19 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'column',
     gap: 24,
+  },
+  emptyStateContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  emptyStateText: {
+    fontFamily: 'Plus Jakarta Sans',
+    fontSize: 18,
+    fontWeight: '400',
+    textAlign: 'center',
+    color: '#898D8F',
+    lineHeight: 27,
   },
 });
