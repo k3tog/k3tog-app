@@ -28,7 +28,7 @@ const MyYarnDetail = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopbarCenterAligned title="Pattern" leftIcon={icons.chevronLeftColoredIcon} />
+      <TopbarCenterAligned title="Yarn" leftIcon={icons.chevronLeftColoredIcon} />
       <ScrollView>
         <View style={styles.infoContainer}>
           <TypographyHeading2 text={yarn?.yarn_name ?? 'Yarn'} />
