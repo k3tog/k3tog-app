@@ -15,7 +15,7 @@ const RadioButton = ({ value, icon, label, description, checked, onChange }: Rad
   return (
     <View style={styles.radioButtonWrapper}>
       <View style={styles.radioButtonLabelWrapper}>
-        <Image source={icon} />
+        <Image style={styles.icon} source={icon} />
         <View style={styles.lableWrapper}>
           <Text style={styles.labelText}>{label}</Text>
           <Text style={styles.descriptionText}>{description}</Text>
@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     gap: 16,
     alignItems: 'center',
     paddingHorizontal: 8,
+  },
+  icon: {
+    width: 24,
+    height: 24,
   },
   lableWrapper: {
     display: 'flex',

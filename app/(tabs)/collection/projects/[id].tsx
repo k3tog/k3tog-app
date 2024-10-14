@@ -44,7 +44,7 @@ const MyProjectDetail = () => {
             </Text>
           </View>
           <View style={styles.iconInfo}>
-            <Image style={styles.icon} source={icons.gaugeIcon} />
+            <Image style={styles.icon} source={icons.rulerIcon} />
             <Text style={styles.descriptionText}>{project?.size}</Text>
           </View>
           <Text style={styles.sectionTitle}>Note</Text>
