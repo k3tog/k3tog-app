@@ -2,9 +2,9 @@ import { View, ViewToken, StyleSheet } from 'react-native';
 import Animated, { useSharedValue, useAnimatedScrollHandler } from 'react-native-reanimated';
 import SliderPaginator from './slider.paginator';
 import { useRef, useState } from 'react';
-import LargeImageSliderItem from './slider.images-large-item';
+import MediumImageSliderItem from './slider.images-medium-item';
 
-const LargeImageSlider = ({ images }: { images: TImageSliderProps[] }) => {
+const MediumImageSlider = ({ images }: { images: TImageSliderProps[] }) => {
   const scrollX = useSharedValue(0);
   const [paginationIndex, setPaginationIndex] = useState(0);
 
@@ -15,7 +15,7 @@ const LargeImageSlider = ({ images }: { images: TImageSliderProps[] }) => {
   });
 
   const onViewableItemsChanged = ({ viewableItems }: { viewableItems: ViewToken[] }) => {
-    if (viewableItems.length > 0 && viewableItems[0].index !== undefined && viewableItems[0].index !== null) {
+    if (viewableItems[0].index !== undefined && viewableItems[0].index !== null) {
       setPaginationIndex(viewableItems[0].index);
     }
   };
@@ -31,7 +31,7 @@ const LargeImageSlider = ({ images }: { images: TImageSliderProps[] }) => {
       <Animated.FlatList
         style={styles.list}
         data={images}
-        renderItem={({ item, index }) => <LargeImageSliderItem item={item} index={index} scrollX={scrollX} />}
+        renderItem={({ item, index }) => <MediumImageSliderItem item={item} index={index} scrollX={scrollX} />}
         keyExtractor={(item) => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -44,7 +44,7 @@ const LargeImageSlider = ({ images }: { images: TImageSliderProps[] }) => {
   );
 };
 
-export default LargeImageSlider;
+export default MediumImageSlider;
 
 const styles = StyleSheet.create({
   list: {

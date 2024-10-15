@@ -3,7 +3,7 @@ import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-na
 
 const { width } = Dimensions.get('screen');
 
-const ImageSliderItem = ({ item, index, scrollX }: TImageSliderItemProps) => {
+const MediumImageSliderItem = ({ item, index, scrollX }: TImageSliderItemProps) => {
   const rnAnimated = useAnimatedStyle(() => {
     return {
       transform: [
@@ -33,7 +33,7 @@ const ImageSliderItem = ({ item, index, scrollX }: TImageSliderItemProps) => {
   );
 };
 
-export default ImageSliderItem;
+export default MediumImageSliderItem;
 
 const styles = StyleSheet.create({
   image: {
