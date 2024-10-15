@@ -1,6 +1,6 @@
 import { getUserNeedleV1Api } from '@/apis/user-needles';
 import Divider from '@/components/divider/divider';
-import MediumImageSlider from '@/components/slider/slider.images-large';
+import MediumImageSlider from '@/components/slider/slider.images-medium';
 import TopbarCenterAligned from '@/components/topbar/topbar.center-aligned';
 import { TypographyBodySmall } from '@/components/typography/typography.body';
 import { TypographyHeading2 } from '@/components/typography/typography.heading';

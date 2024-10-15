@@ -9,7 +9,7 @@ import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View, ScrollView, Image } from 'react-native';
 import images from '@/constants/images';
-import MediumImageSlider from '@/components/slider/slider.images-large';
+import MediumImageSlider from '@/components/slider/slider.images-medium';
 
 const IMAGES: TImageSliderProps[] = [
   {

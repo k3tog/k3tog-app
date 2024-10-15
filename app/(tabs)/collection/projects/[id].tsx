@@ -1,10 +1,27 @@
 import { getUserProjectV1Api } from '@/apis/user-projects';
 import Divider from '@/components/divider/divider';
+import LargeImageSlider from '@/components/slider/slider.images-large';
 import TopbarCenterAligned from '@/components/topbar/topbar.center-aligned';
 import icons from '@/constants/icons';
+import images from '@/constants/images';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView } from 'react-native';
+
+const IMAGES: TImageSliderProps[] = [
+  {
+    id: '1',
+    image: images.placeholderImage361,
+  },
+  {
+    id: '2',
+    image: images.placeholderImage361,
+  },
+  {
+    id: '3',
+    image: images.placeholderImage361,
+  },
+];
 
 const MyProjectDetail = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -26,8 +43,8 @@ const MyProjectDetail = () => {
   return (
     <SafeAreaView style={styles.container}>
       <TopbarCenterAligned title="Project" leftIcon={icons.chevronLeftColoredIcon} />
+      <LargeImageSlider images={IMAGES} />
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        {/* project info */}
         <View style={styles.projectInfoContainer}>
           <Text style={styles.status}>{project?.status}</Text>
           <Text style={styles.title}>{project?.title}</Text>
