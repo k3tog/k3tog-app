@@ -1,6 +1,6 @@
 type TImageSliderProps = {
-  id: string;
-  image: ImageSourcePropType;
+  id: string | number;
+  image: ImageSourcePropType | string;
 };
 
 type TImageSliderItemProps = {
