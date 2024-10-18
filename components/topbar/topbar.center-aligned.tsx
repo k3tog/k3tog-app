@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
-import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { TypographyLabelLarge } from '../typography/typography.label';
 
 const TopbarCenterAligned = ({ leftIcon, title, rightIcon, rightButton }: TTopbarCenterAlignedProps) => {
   // TODO: Implement right icon functionality
@@ -12,7 +13,7 @@ const TopbarCenterAligned = ({ leftIcon, title, rightIcon, rightButton }: TTopba
         </TouchableOpacity>
       )}
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{title}</Text>
+        <TypographyLabelLarge text={title} style={{ fontWeight: 700, textAlign: 'center' }} />
       </View>
     </View>
   );
@@ -42,14 +43,5 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     marginLeft: '-10%',
-  },
-  title: {
-    alignSelf: 'stretch',
-    color: '#131214',
-    fontFamily: 'Plus Jakarta Sans',
-    fontSize: 18,
-    fontWeight: '700',
-    lineHeight: 18,
-    textAlign: 'center',
   },
 });
