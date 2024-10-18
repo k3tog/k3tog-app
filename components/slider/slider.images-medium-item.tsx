@@ -28,7 +28,7 @@ const MediumImageSliderItem = ({ item, index, scrollX }: TImageSliderItemProps) 
   });
   return (
     <Animated.View style={[styles.container, rnAnimated]}>
-      <Image source={item.image} style={styles.image} />
+      <Image source={{ uri: item.image }} style={styles.image} />
     </Animated.View>
   );
 };

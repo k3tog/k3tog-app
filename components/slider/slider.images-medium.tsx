@@ -32,7 +32,7 @@ const MediumImageSlider = ({ images }: { images: TImageSliderProps[] }) => {
         style={styles.list}
         data={images}
         renderItem={({ item, index }) => <MediumImageSliderItem item={item} index={index} scrollX={scrollX} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}
         onScroll={onScrollHandler}
