@@ -1,6 +1,6 @@
 import { createUserPatternV1Api } from '@/apis/user-patterns';
 import Button from '@/components/button';
-import Input from '@/components/Input';
+import Input from '@/components/input';
 import TopbarCenterAligned from '@/components/topbar/topbar.center-aligned';
 import icons from '@/constants/icons';
 import { useRouter } from 'expo-router';

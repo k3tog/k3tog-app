@@ -1,5 +1,5 @@
 import Button from '@/components/button';
-import Input from '@/components/Input';
+import Input from '@/components/input';
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

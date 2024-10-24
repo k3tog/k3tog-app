@@ -1,5 +1,5 @@
 import Button from '@/components/button';
-import Input from '@/components/Input';
+import Input from '@/components/input';
 import { Controller, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import Select from '@/components/select';
