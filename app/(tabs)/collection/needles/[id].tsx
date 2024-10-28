@@ -6,25 +6,9 @@ import { TypographyBodySmall } from '@/components/typography/typography.body';
 import { TypographyHeading2 } from '@/components/typography/typography.heading';
 import { TypographyLabelMedium, TypographyLabelSmall } from '@/components/typography/typography.label';
 import icons from '@/constants/icons';
-import images from '@/constants/images';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Image, View } from 'react-native';
-
-const IMAGES: TImageSliderProps[] = [
-  {
-    id: '1',
-    image: images.placeholderImage320,
-  },
-  {
-    id: '2',
-    image: images.placeholderImage320,
-  },
-  {
-    id: '3',
-    image: images.placeholderImage320,
-  },
-];
 
 const MyNeedleDetail = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -42,6 +26,12 @@ const MyNeedleDetail = () => {
     };
     fetchNeedle();
   }, [id]);
+
+  const images: TImageSliderProps[] =
+    needle?.photos?.map((photo) => ({
+      id: photo.photo_id,
+      image: photo.signed_photo_url,
+    })) ?? [];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -65,7 +55,7 @@ const MyNeedleDetail = () => {
             </View>
           )}
         </View>
-        <MediumImageSlider images={IMAGES} />
+        <MediumImageSlider images={images} />
       </ScrollView>
     </SafeAreaView>
   );

@@ -8,23 +8,7 @@ import icons from '@/constants/icons';
 import { useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View, ScrollView, Image } from 'react-native';
-import images from '@/constants/images';
 import MediumImageSlider from '@/components/slider/slider.images-medium';
-
-const IMAGES: TImageSliderProps[] = [
-  {
-    id: '1',
-    image: images.placeholderImage320,
-  },
-  {
-    id: '2',
-    image: images.placeholderImage320,
-  },
-  {
-    id: '3',
-    image: images.placeholderImage320,
-  },
-];
 
 const MyYarnDetail = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -42,6 +26,12 @@ const MyYarnDetail = () => {
     };
     fetchYarn();
   }, [id]);
+
+  const images: TImageSliderProps[] =
+    yarn?.photos?.map((photo) => ({
+      id: photo.photo_id,
+      image: photo.signed_photo_url,
+    })) ?? [];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -95,7 +85,7 @@ const MyYarnDetail = () => {
             </View>
           )}
         </View>
-        <MediumImageSlider images={IMAGES} />
+        <MediumImageSlider images={images} />
       </ScrollView>
     </SafeAreaView>
   );

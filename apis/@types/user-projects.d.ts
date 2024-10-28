@@ -10,4 +10,5 @@ type UserProjectV1ResponseData = {
   needles?: UserNeedleV1ResponseData[];
   // gauges: UserGaugeV1ResponseData[];
   note?: string;
+  photos?: PhotoV1ResponseData[];
 };
