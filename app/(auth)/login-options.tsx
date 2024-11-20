@@ -54,14 +54,14 @@ export default function LoginOptions() {
             titleStyle={{ color: '#5336E2' }}
             title="Continue with Email"
             onPress={() => {
-              router.push('/auth/login');
+              router.push('/(auth)/login');
             }}
           />
         </View>
 
         <View style={styles.terms_privacy_area}>
           <Text style={styles.terms_privacy_text}>
-            By continuing, you agree to our Terms of Service and Privacy Policy.
+            By continuing, you agree toour Terms of Service and Privacy Policy.
           </Text>
         </View>
       </View>
